@@ -1,0 +1,15 @@
+{% extends 'bases/navbar.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <p>Logged out!</p>
+    <a href="{% url 'login'%}">Click here to login again.</a>
+</div>
+</body>
+{% endblock %}
+
+</html>
+
+

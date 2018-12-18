@@ -1,0 +1,55 @@
+{% load static %}
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'user_manager/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/png" href="{% static 'user_manager/images' %}/favicon.ico"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        {% if user.is_authenticated %}
+            <div class="navbar-header">
+
+                <img src="{% static 'user_manager/images/logo_50_50.png' %}" class="logo">
+
+            </div>
+            <span class="welcome">Welcome {{ user.username }}!</span>
+        {% else %}
+            <div class="navbar-header">
+                <img src="{% static 'user_manager/images/logo_50_50.png' %}" class="logo_not_logged_in">
+            </div>
+        {% endif %}
+        <ul class="nav navbar-nav">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            {% if user.is_authenticated %}
+            {% else %}
+                <li><a href="#">Page 2</a></li>
+            {% endif %}
+        </ul>
+        {% if user.is_authenticated %}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+            </ul>
+        {% else %}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        {% endif %}
+
+    </div>
+
+</nav>
+{% block content %}
+{% endblock %}

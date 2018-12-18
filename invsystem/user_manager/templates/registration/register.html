@@ -1,0 +1,25 @@
+{% extends 'bases/navbar.html' %}
+{% load static %}
+
+
+{% block content %}
+    <html>
+
+    <div class="container">
+        <h1>registration page</h1>
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <p>There are errors in the form</p>
+            {% endif %}
+
+            {{ form }}
+            <input type="submit" value="Register">
+        </form>
+        <div>
+
+            </body>
+
+    </html>
+{% endblock %}
