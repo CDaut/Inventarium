@@ -11,6 +11,7 @@ def index(request):
 def register(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
+        title = 'Login'
 
         if form.is_valid():
             form.save()
@@ -22,6 +23,7 @@ def register(request):
 
     else:
         form = SignUpForm()
+        title = 'Registrieren'
 
-    context = {'form': form}
+    context = {'form': form, 'title': title}
     return render(request, 'registration/register.html', context)

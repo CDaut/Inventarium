@@ -9,3 +9,4 @@ django-import-export
 psycopg2-binary
 requests
 Faker
+Pillow
