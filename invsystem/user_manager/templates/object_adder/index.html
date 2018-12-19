@@ -1,12 +1,42 @@
 {% extends 'bases/navbar.html' %}
 <html>
-{% block content%}
+{% block content %}
 
-<body>
-<div class="container">
-    <p>On this page objects can be added.</p>
-</div>
-</body>
+    <body>
+    <div class="container">
+        {% if not obj_name is None %}
+            <div class="alert alert-info alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Das Objekt <strong>{{ obj_name }}</strong> wurde inventarisiert!
+            </div>
+        {% endif %}
+        <form method="POST" class="post-form invform">
+            {% csrf_token %}
+            <div class="ammout-wrapper">
+                {{ form.ammout.errors }}
+                <label for="{{ form.ammout.id_for_lable }}">Anzahl:</label>
+                {{ form.ammout }}
+            </div>
+            <div class="title-wrapper">
+                {{ form.title.errors }}
+                <label for="{{ form.title.id_for_lable }}">Objekt:</label>
+                {{ form.title }}
+            </div>
+            <div class="img-wrapper">
+                {{ form.img.errors }}
+                <label for="{{ form.img.id_for_lable }}">Bild:</label>
+                {{ form.img }}
+            </div>
+            <div class="description-wrapper">
+                {{ form.description.errors }}
+                <label for="{{ form.description.id_for_lable }}">Beschreibung:</label>
+                {{ form.description }}
+            </div>
+
+            <button type="submit" class="save btn btn-primary">inventarisieren</button>
+        </form>
+    </div>
+    </body>
 {% endblock %}
 
 </html>

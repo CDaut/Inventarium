@@ -3,7 +3,7 @@ from .models import Object
 
 
 class ObjectAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('title', 'ammout', 'uuid', 'img')
 
 
 # Register your models here.

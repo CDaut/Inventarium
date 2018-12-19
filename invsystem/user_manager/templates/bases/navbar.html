@@ -11,6 +11,9 @@
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>{{ title }}</title>
 
 
@@ -24,7 +27,7 @@
                 <img src="{% static 'user_manager/images/logo_50_50.png' %}" class="logo">
 
             </div>
-            <span class="welcome">Welcome {{ user.username }}!</span>
+            <span class="welcome">Wilkommen {{ user.username }}!</span>
         {% else %}
             <div class="navbar-header">
                 <img src="{% static 'user_manager/images/logo_50_50.png' %}" class="logo_not_logged_in">

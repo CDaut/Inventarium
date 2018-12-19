@@ -12,7 +12,7 @@
         {% endif %}
 
         {% if next %}
-            <p class="error">You cannot access that page without being logged in.</p>
+            <p class="error">Sie müssen sich zuerst anmelden um diese Seite zu besuchen.</p>
         {% endif %}
 
 
@@ -33,7 +33,7 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Login</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
                     <input type="hidden" name="next" value="{{ next }}">
                     <span class="reset"><a href="{% url 'password_reset' %}">Lost password?</a></span>
 
