@@ -1,0 +1,27 @@
+{% extends 'bases/navbar.html' %}
+<html>
+{% block content %}
+
+    <body>
+    <div class="container shadow">
+        {% if not cat_name is None %}
+            <div class="alert alert-info alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Die Kategorie <strong>{{ cat_name }}</strong> wurde erstellt!
+            </div>
+        {% endif %}
+        <form method="POST" class="post-form invform">
+            {% csrf_token %}
+            <div class="name-wrapper">
+                {{ form.name.errors }}
+                <label for="{{ form.name.id_for_lable }}">Kategorie:</label>
+                {{ form.name }}
+            </div>
+
+            <button type="submit" class="save btn btn-primary">Kategorie hinzufügen</button>
+        </form>
+    </div>
+    </body>
+{% endblock %}
+
+</html>

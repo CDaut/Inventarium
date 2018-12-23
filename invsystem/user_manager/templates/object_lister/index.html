@@ -1,0 +1,29 @@
+{% extends 'bases/navbar.html' %}
+<html>
+{% block content %}
+
+    <body>
+    <div class="container shadow">
+        <table class="objecttable">
+            <tr class="objecttable-row">
+                <th class="objecttable-head">Name</th>
+                <th class="objecttable-head">Anzahl</th>
+                <th class="objecttable-head">Kategorie</th>
+                <th class="objecttable-head">Inventarisierungsdatum</th>
+                <th class="objecttable-head">Hinzugefügt von</th>
+            </tr>
+            {% for object in  objects %}
+                <tr class="objecttable-row">
+                    <td class="objecttable-data">{{ object.title }}</td>
+                    <td class="objecttable-data">{{ object.ammout }}</td>
+                    <td class="objecttable-data">{{ object.category }}</td>
+                    <td class="objecttable-data">{{ object.inventarized_date }}</td>
+                    <td class="objecttable-data">{{ object.user_added }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    </body>
+{% endblock %}
+
+</html>

@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.add, name='add'),
+    path('kategorie', views.category, name='category')
 ]

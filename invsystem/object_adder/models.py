@@ -14,3 +14,19 @@ class Object(models.Model):
     description = models.TextField(max_length=500, blank=True)
     removed_date = models.DateTimeField(blank=True, default=None, null=True)
     user_added = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=True)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, blank=True, default=None, null=True)
+
+    objects = models.Manager()
+
+    def __str__(self):
+        return str(self.uuid)
+
+
+class Category(models.Model):
+    name = models.TextField(blank=False, max_length=150)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    categories = models.Manager()
+
+    def __str__(self):
+        return self.name
