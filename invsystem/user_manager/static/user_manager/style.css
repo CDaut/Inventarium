@@ -100,19 +100,53 @@
 }
 
 .objecttable-data, .objecttable-head {
-    border: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
     text-align: center;
     padding: 0.4em;
 }
 
-.objecttable-row:nth-child(even) {
-    background-color: #dddddd;
+.objecttable-row:hover {
+    background-color: #f8f8f8;
 }
 
-.objecttable-row:hover {
-    -webkit-box-shadow: 3px 3px 28px -3px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 3px 3px 28px -3px rgba(0, 0, 0, 0.1);
-    box-shadow: 3px 3px 28px -3px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    transition: 0.1s;
+.cattable {
+    border-collapse: collapse;
+    width: 50%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.cattable * {
+    text-align: left;
+}
+
+.lower-box {
+    margin-top: 2em;
+    width: 50%;
+}
+
+.celllink, .celllink:hover, .celllink:visited, .celllink:active {
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 0.4em;
+    text-decoration: none;
+    color: #333333;
+    cursor: default;
+}
+
+.alert {
+    margin-top: 1em;
+}
+
+.nodisplay {
+    display: none;
+}
+
+.delaleret {
+    display: none;
+}
+
+.delbtn{
+    margin-bottom: 1em !important;
 }

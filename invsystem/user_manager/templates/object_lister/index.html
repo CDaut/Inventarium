@@ -4,24 +4,57 @@
 
     <body>
     <div class="container shadow">
-        <table class="objecttable">
-            <tr class="objecttable-row">
-                <th class="objecttable-head">Name</th>
-                <th class="objecttable-head">Anzahl</th>
+        <form>
+            {% csrf_token %}
+            <table class="objecttable">
+                <tr>
+                    <th class="objecttable-head"><a href="./0">Name</a></th>
+                    <th class="objecttable-head"><a href="./1">Anzahl</a></th>
+                    <th class="objecttable-head"><a href="./2">Kategorie</a></th>
+                    <th class="objecttable-head"><a href="./3">Inventarisierungsdatum</a></th>
+                    <th class="objecttable-head"><a href="./4">Hinzugefügt von</a></th>
+                </tr>
+                {% for object in  objects %}
+                    <tr class="objecttable-row">
+                        <td class="objecttable-data">
+                            <a class="celllink" href="./{{ object.uuid }}">{{ object.title }}</a>
+                        </td>
+                        <td class="objecttable-data">
+                            <a class="celllink" href="./{{ object.uuid }}">{{ object.ammout }}</a>
+                        </td>
+                        {% if object.category is not None %}
+                            <td class="objecttable-data">
+                                <a class="celllink" href="./{{ object.uuid }}">{{ object.category }}</a>
+                            </td>
+                        {% else %}
+                            <td class="objecttable-data">
+                                <a class="celllink" href="./{{ object.uuid }}">-------</a>
+                            </td>
+                        {% endif %}
+                        <td class="objecttable-data">
+                            <a class="celllink" href="./{{ object.uuid }}">{{ object.inventarized_date }}</a>
+                        </td>
+                        <td class="objecttable-data">
+                            <a class="celllink" href="./{{ object.uuid }}">{{ object.user_added }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <p>{{ objammout }} Objekte insgesamt</p>
+        </form>
+    </div>
+    <div class="container shadow lower-box">
+        <table class="cattable">
+            <tr>
                 <th class="objecttable-head">Kategorie</th>
-                <th class="objecttable-head">Inventarisierungsdatum</th>
-                <th class="objecttable-head">Hinzugefügt von</th>
             </tr>
-            {% for object in  objects %}
+            {% for category in  categories %}
                 <tr class="objecttable-row">
-                    <td class="objecttable-data">{{ object.title }}</td>
-                    <td class="objecttable-data">{{ object.ammout }}</td>
-                    <td class="objecttable-data">{{ object.category }}</td>
-                    <td class="objecttable-data">{{ object.inventarized_date }}</td>
-                    <td class="objecttable-data">{{ object.user_added }}</td>
+                    <td class="objecttable-data">{{ category.name }}</td>
                 </tr>
             {% endfor %}
         </table>
+        <p>{{ ncats }} Kategorien insgesamt</p>
     </div>
     </body>
 {% endblock %}
