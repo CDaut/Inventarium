@@ -3,8 +3,8 @@
 This project is a django server inventarization system. It requires docker 
 and docker compose as well as the python modules stated in the requirements.txt. It can be used to
  inventarize and document basically everything.
-##Setup
-###Installation
+## Setup
+### Installation
 1. Install `docker` and `docker-compose` from [here](https://www.docker.com/get-started) and [here](https://docs.docker.com/compose/install/)
 2. Clone this repository
 3. Go into the root directory of the repository (where docker-compose.yml) lives and open 
@@ -13,7 +13,7 @@ a terminal
 database and the django server will be pulled and configured automatically. This step 
 requires some disk space and an active internet connection
 5. You now need to create a database user
-###Creating a database user
+### Creating a database user
 In order to access the system you will need to create a database user so django can 
 interface with the database and you can log in to interact with the server e.g. create 
 additional users or inventarize objects.
