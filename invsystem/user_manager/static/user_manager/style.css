@@ -112,17 +112,19 @@
 .cattable {
     border-collapse: collapse;
     width: 50%;
-    margin-top: 2em;
-    margin-bottom: 2em;
+    margin: 2em auto 2em auto;
 }
 
-.cattable * {
+.cattable .leftalign {
     text-align: left;
+}
+
+.cattable .rightalign{
+    text-align: right;
 }
 
 .lower-box {
     margin-top: 2em;
-    width: 50%;
 }
 
 .celllink, .celllink:hover, .celllink:visited, .celllink:active {
@@ -149,4 +151,30 @@
 
 .delbtn{
     margin-bottom: 1em !important;
+}
+
+.delcatbtn{
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em !important;
+}
+
+.nodec{
+    list-style: none;
+}
+
+.registerformcontainer *{
+    margin-top: 1em;
+}
+
+.registerformcontainer input{
+    margin-left: 0.7em;
+}
+
+.nomarg{
+    margin: 2em 0 0 0 !important;
+}
+
+.pwdinfo{
+    border: 2px solid rgba(110, 110, 110, 0.28);
+    width: 50%;
 }

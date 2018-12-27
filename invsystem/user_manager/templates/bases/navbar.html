@@ -42,13 +42,13 @@
         </ul>
         {% if user.is_authenticated %}
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Ausloggen</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Einstellungen</a></li>
             </ul>
         {% else %}
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Registrieren</a></li>
+                <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Einloggen</a></li>
             </ul>
         {% endif %}
 

@@ -5,20 +5,55 @@
 {% block content %}
     <html>
 
-    <div class="container">
-        <h1>registration page</h1>
-        <form method="post" action="{% url 'register' %}">
+    <div class="container shadow">
+        <h1>Registrieren</h1>
+        <form method="post" action="{% url 'register' %}" class="registerformcontainer">
             {% csrf_token %}
 
             {% if form.errors %}
                 <p>There are errors in the form</p>
             {% endif %}
 
-            {{ form }}
-            <input type="submit" value="Register">
+            <div class="username-wrapper">
+                {{ form.username.errors }}
+                <label for="{{ form.username.id_for_lable }}">Nutzername:</label>
+                {{ form.username }}
+            </div>
+            <div class="first_name-wrapper">
+                {{ form.first_name.errors }}
+                <label for="{{ form.first_name.id_for_lable }}">Vorname:</label>
+                {{ form.first_name }}
+            </div>
+            <div class="last_name-wrapper">
+                {{ form.last_name.errors }}
+                <label for="{{ form.last_name.id_for_lable }}">Nachname:</label>
+                {{ form.last_name }}
+            </div>
+            <div class="email-wrapper">
+                {{ form.email.errors }}
+                <label for="{{ form.email.id_for_lable }}">E-mail:</label>
+                {{ form.email }}
+            </div>
+            <div class="password1-wrapper">
+                {{ form.password1.errors }}
+                <label for="{{ form.password1.id_for_lable }}">Passwort:</label>
+                {{ form.password1 }}
+            </div>
+            <ul class="nodec pwdinfo">
+                <li>Das Passwort darf nicht zu ähnlich zu Ihren anderen persönlichen Informationen sein.</li>
+                <li>Das Passwort muss mindestens 8 Zeichen enthalten.</li>
+                <li>Das Passwort darf nicht allgemein üblich sein.</li>
+                <li>Das Passwort darf nicht komplett aus Ziffern bestehen.</li>
+            </ul>
+            <div class="password2-wrapper">
+                {{ form.password2.errors }}
+                <label for="{{ form.password2.id_for_lable }}">Passwort bestätigen:</label>
+                {{ form.password2 }}
+            </div>
+
+            <input type="submit" value="Registrieren" class="btn btn-success nomarg">
         </form>
         <div>
-
             </body>
 
     </html>

@@ -48,7 +48,7 @@ def objlist(request, orderstr=None):
         return render(request, 'object_lister/index.html', context)
 
     elif request.method == 'POST':
-        form = ObjectForm(request.POST)
+        form = ObjectForm(request.POST, request.FILES)
 
         if form.is_valid():
             result = re.fullmatch(uuidv4pattern, orderstr)
@@ -77,4 +77,11 @@ def objlist(request, orderstr=None):
 def delete(request, uuid_url):
     obj = get_object_or_404(Object, pk=uuid_url)
     obj.delete()
+    return render(request, 'object_lister/delete.html', {'uuid': uuid_url})
+
+
+@login_required
+def deleteCategory(request, uuid_url):
+    cat = get_object_or_404(Category, pk=uuid_url)
+    cat.delete()
     return render(request, 'object_lister/delete.html', {'uuid': uuid_url})

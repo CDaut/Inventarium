@@ -9,7 +9,7 @@ from django.utils import timezone
 @login_required
 def add(request):
     if request.method == 'POST':
-        form = ObjectForm(request.POST)
+        form = ObjectForm(request.POST, request.FILES)
 
         if form.is_valid():
             try:

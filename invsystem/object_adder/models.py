@@ -8,13 +8,13 @@ from django.contrib.auth.models import User
 class Object(models.Model):
     ammout = models.PositiveIntegerField(default=1, blank=False)
     title = models.TextField(max_length=100, default=None, blank=False)
-    img = models.ImageField(default=None, blank=True)
+    img = models.ImageField(default='/images/None/nopic.svg', blank=True, upload_to='images/')
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     inventarized_date = models.DateTimeField(blank=False, null=True)
     description = models.TextField(max_length=500, blank=True)
     removed_date = models.DateTimeField(blank=True, default=None, null=True)
     user_added = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=True)
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, blank=True, default=None, null=True)
+    category = models.ForeignKey('Category', on_delete=models.SET_NULL, blank=True, default=None, null=True)
 
     objects = models.Manager()
 

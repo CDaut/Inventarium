@@ -4,6 +4,14 @@
 
     <body>
     <div class="container shadow">
+        <div class="alert alert-danger alert-dismissible nodisplay" id="delalert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            Kategorie wurde gelöscht.
+        </div>
+        <div class="alert alert-danger alert-dismissible nodisplay" id="abortalert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            Abbruch.
+        </div>
         <form>
             {% csrf_token %}
             <table class="objecttable">
@@ -46,17 +54,49 @@
     <div class="container shadow lower-box">
         <table class="cattable">
             <tr>
-                <th class="objecttable-head">Kategorie</th>
+                <th class="objecttable-head leftalign">Kategorie</th>
+                <th class="objecttable-head"></th>
             </tr>
             {% for category in  categories %}
                 <tr class="objecttable-row">
-                    <td class="objecttable-data">{{ category.name }}</td>
+                    <td class="objecttable-data leftalign">{{ category.name }}</td>
+                    <td class="objecttable-data rightalign">
+                        <button class="btn btn-danger delcatbtn" id="{{ category.id }}" onclick="delcat(this.id)">
+                            löschen
+                        </button>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
         <p>{{ ncats }} Kategorien insgesamt</p>
     </div>
     </body>
-{% endblock %}
+    <script>
+        function delcat(id) {
+            if (confirm('Möchten sie die Kategorie {{ category.name }} wirklich löschen?')) {
 
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function () {
+
+                    if (this.readyState == 4 && this.status == 200) {
+                        window.location.href = "./"
+                        abox = document.getElementById('delalert');
+                        abox.style.display = "block";
+                    }
+
+                };
+                xhttp.open("GET", './' + id + '/delete/category', true);
+                xhttp.send();
+
+
+            } else {
+                abox = document.getElementById('abortalert');
+                abox.style.display = "block";
+            }
+
+        }
+
+    </script>
+{% endblock %}
 </html>

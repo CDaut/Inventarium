@@ -14,7 +14,7 @@
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             Abbruch.
         </div>
-        <form method="POST" class="post-form invform">
+        <form method="POST" class="post-form invform" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="ammout-wrapper">
                 {{ form.ammout.errors }}
@@ -31,11 +31,13 @@
                 <label for="{{ form.category.id_for_lable }}">Kategorie:</label>
                 {{ form.category }}
             </div>
+            <!--
             <div class="img-wrapper">
                 {{ form.img.errors }}
                 <label for="{{ form.img.id_for_lable }}">Bild:</label>
                 {{ form.img }}
             </div>
+            -->
             <div class="description-wrapper">
                 {{ form.description.errors }}
                 <label for="{{ form.description.id_for_lable }}">Beschreibung:</label>
