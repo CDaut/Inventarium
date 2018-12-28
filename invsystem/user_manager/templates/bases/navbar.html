@@ -24,13 +24,13 @@
         {% if user.is_authenticated %}
             <div class="navbar-header">
 
-                <img src="{% static 'user_manager/images/logo_50_50.png' %}" class="logo">
+                <img src="{% static 'user_manager/images/logo.png' %}" class="logo">
 
             </div>
             <span class="welcome">Wilkommen {{ user.username }}!</span>
         {% else %}
             <div class="navbar-header">
-                <img src="{% static 'user_manager/images/logo_50_50.png' %}" class="logo_not_logged_in">
+                <img src="{% static 'user_manager/images/logo.png' %}" class="logo_not_logged_in">
             </div>
         {% endif %}
         <ul class="nav navbar-nav">

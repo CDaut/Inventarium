@@ -3,6 +3,7 @@ from object_adder.models import Object, Category
 from object_adder.forms import ObjectForm
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.conf import settings
 
 import re
 
@@ -80,11 +81,22 @@ def delete(request, uuid_url):
     obj = get_object_or_404(Object, pk=uuid_url)
     obj.removed_date = timezone.now()
     obj.save()
+    log = open(settings.LOGFILE, 'a')
+    log.write(
+        '\n[' + str(timezone.now()) + ']' + ' REMOVE_OBJECT ' + '|USR: ' + request.user.username + '|NAME: ' +
+        obj.title + '|UUID: ' + str(obj.uuid) + '|CAT: ' + str(obj.category)
+    )
     return render(request, 'object_lister/delete.html', {'uuid': uuid_url})
 
 
 @login_required
 def deleteCategory(request, uuid_url):
     cat = get_object_or_404(Category, pk=uuid_url)
+    log = open(settings.LOGFILE, 'a')
+    log.write(
+        '\n[' + str(timezone.now()) + ']' + ' REMOVE_CATEGORY ' + '|USR: ' + request.user.username + '|NAME: ' +
+        cat.name + '|UUID: ' + str(cat.id)
+    )
     cat.delete()
+
     return render(request, 'object_lister/delete.html', {'uuid': uuid_url})
