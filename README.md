@@ -1,3 +1,4 @@
+![Inventarium](/invsystem/user_manager/static/user_manager/images/banner.png)
 # Inventarium
 
 This project is a django server inventarization system. It requires docker 
