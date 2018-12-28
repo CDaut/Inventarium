@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from object_adder.models import Object, Category
 from object_adder.forms import ObjectForm
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+
 import re
 
 
@@ -76,7 +78,8 @@ def objlist(request, orderstr=None):
 @login_required
 def delete(request, uuid_url):
     obj = get_object_or_404(Object, pk=uuid_url)
-    obj.delete()
+    obj.removed_date = timezone.now()
+    obj.save()
     return render(request, 'object_lister/delete.html', {'uuid': uuid_url})
 
 
