@@ -43,7 +43,7 @@
         {% if user.is_authenticated %}
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Ausloggen</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Einstellungen</a></li>
+                <li><a href="{% url 'settings_index' %}"><span class="glyphicon glyphicon-cog"></span> Einstellungen</a></li>
             </ul>
         {% else %}
             <ul class="nav navbar-nav navbar-right">

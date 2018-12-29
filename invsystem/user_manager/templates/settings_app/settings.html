@@ -1,0 +1,46 @@
+{% extends 'bases/navbar.html' %}
+<html>
+{% block content %}
+    <body>
+    <div class="container shadow">
+        {% if edited %}
+            <div class="alert alert-info alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Änderung wurde gespeichert
+            </div>
+        {% endif %}
+        <h1>Einstellungen</h1>
+        <form method="post" action="{% url 'settings_index' %}" class="registerformcontainer">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <p>There are errors in the form</p>
+            {% endif %}
+
+            <div class="username-wrapper">
+                {{ form.username.errors }}
+                <label for="{{ form.username.id_for_lable }}">Nutzername:</label>
+                {{ form.username }}
+            </div>
+            <div class="first_name-wrapper">
+                {{ form.first_name.errors }}
+                <label for="{{ form.first_name.id_for_lable }}">Vorname:</label>
+                {{ form.first_name }}
+            </div>
+            <div class="last_name-wrapper">
+                {{ form.last_name.errors }}
+                <label for="{{ form.last_name.id_for_lable }}">Nachname:</label>
+                {{ form.last_name }}
+            </div>
+            <div class="email-wrapper">
+                {{ form.email.errors }}
+                <label for="{{ form.email.id_for_lable }}">E-mail:</label>
+                {{ form.email }}
+            </div>
+            <input type="submit" value="Speichern" class="btn btn-success nomarg">
+        </form>
+    </div>
+
+    </body>
+{% endblock %}
+</html>

@@ -45,8 +45,12 @@ def objlist(request, orderstr=None):
                 return render(request, 'object_lister/details.html', context)
 
         categories = Category.categories.all()
+        count = 0
+        for obj in objects:
+            if obj.removed_date is  None:
+                count +=1
 
-        context = {'title': 'Inventar', 'objects': objects, 'objammout': len(objects), 'categories': categories,
+        context = {'title': 'Inventar', 'objects': objects, 'objammout': count, 'categories': categories,
                    'ncats': len(categories)}
         return render(request, 'object_lister/index.html', context)
 
