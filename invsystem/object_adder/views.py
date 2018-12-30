@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from os.path import join
 from .forms import ObjectForm, CategoryForm
 from django.utils import timezone
 

@@ -37,7 +37,10 @@
                 <label for="{{ form.email.id_for_lable }}">E-mail:</label>
                 {{ form.email }}
             </div>
-            <input type="submit" value="Speichern" class="btn btn-success nomarg">
+            <div class="btnwrapper">
+                <input type="submit" value="Speichern" class="btn btn-success nomarg">
+                <a href="{% url 'change_password' %}" class="newcatlink">Passwort ändern </a>
+            </div>
         </form>
     </div>
 
