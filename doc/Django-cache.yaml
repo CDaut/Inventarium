@@ -1,0 +1,489 @@
+version: 0.12.2
+filePath: Django.tex
+options:
+  $BIBINPUTS:
+    - $ROOTDIR
+    - $ROOTDIR/$OUTDIR
+    - ''
+  $TEXINPUTS:
+    - $ROOTDIR
+    - $ROOTDIR/$OUTDIR
+    - ''
+  bibtexEngine: bibtex
+  cleanPatterns:
+    - '**/*.aux'
+    - '**/*.aux.bak'
+    - '**/*.bbl'
+    - '**/*.bcf'
+    - '**/*.blg'
+    - '**/*.dvi'
+    - '**/*.fdb_latexmk'
+    - '**/*.fls'
+    - '**/*.idx'
+    - '**/*.idx.bak'
+    - '**/*.ilg'
+    - '**/*.ind'
+    - '**/*.lof'
+    - '**/*.log'
+    - '**/*.lol'
+    - '**/*.lot'
+    - '**/*.nav'
+    - '**/*.out'
+    - '**/*.pdf'
+    - '**/*.ps'
+    - '**/*.snm'
+    - '**/*.synctex.gz'
+    - '**/*.toc'
+    - '/**/_minted-${JOB}'
+    - '/${OUTDIR}/sage-plots-for-${JOB}.tex'
+    - /missfont.log
+    - /texput.log
+    - /texput.aux
+  dviToPdfEngine: xdvipdfmx
+  engine: pdflatex
+  epstopdfBoundingBox: default
+  epstopdfOutputPath: $DIR_0/$NAME_0.pdf
+  indexAutomaticRanges: true
+  indexEngine: makeindex
+  indexOrdering: word
+  indexSorting: default
+  knitrConcordance: true
+  knitrOutputPath: $JOB.tex
+  lhs2texStyle: poly
+  literateAgdaEngine: agda
+  literateHaskellEngine: lhs2TeX
+  loadCache: true
+  loadUserOptions: true
+  outputFormat: pdf
+  phaseCycles: 20
+  pweaveCacheDirectory: pweave-cache-for-$JOB
+  pweaveFigureDirectory: pweave-figures-for-$JOB
+  pweaveKernel: python3
+  pweaveOutputFormat: tex
+  pweaveOutputPath: $JOB.tex
+  saveCache: true
+  severity: info
+  validateCache: true
+  synctex: true
+  copyTargetsToRoot: true
+  outputDirectory: ''
+  intermediatePostScript: false
+  $PATH: /home/clemens/texlive/bin
+files:
+  dicy-instance.yaml-ParsedYAML:
+    timeStamp: 2019-01-02T20:12:51.597Z
+    jobNames: []
+    value:
+      severity: info
+    type: ParsedYAML
+  dicy.yaml-ParsedYAML:
+    jobNames: []
+    type: ParsedYAML
+  Django.yaml-ParsedYAML:
+    jobNames: []
+    type: ParsedYAML
+  Django.tex-ParsedLaTeXMagic:
+    timeStamp: 2019-01-02T20:12:51.814Z
+    jobNames: []
+    value: {}
+    type: ParsedLaTeXMagic
+  /home/clemens/.config/dicy/config.yaml-ParsedYAML:
+    timeStamp: 2019-01-02T20:12:51.808Z
+    jobNames: []
+    value:
+      synctex: true
+      engine: pdflatex
+      severity: warning
+      copyTargetsToRoot: true
+      outputDirectory: ''
+      outputFormat: pdf
+      cleanPatterns:
+        - '**/*.aux'
+        - '**/*.aux.bak'
+        - '**/*.bbl'
+        - '**/*.bcf'
+        - '**/*.blg'
+        - '**/*.dvi'
+        - '**/*.fdb_latexmk'
+        - '**/*.fls'
+        - '**/*.idx'
+        - '**/*.idx.bak'
+        - '**/*.ilg'
+        - '**/*.ind'
+        - '**/*.lof'
+        - '**/*.log'
+        - '**/*.lol'
+        - '**/*.lot'
+        - '**/*.nav'
+        - '**/*.out'
+        - '**/*.pdf'
+        - '**/*.ps'
+        - '**/*.snm'
+        - '**/*.synctex.gz'
+        - '**/*.toc'
+        - '/**/_minted-${JOB}'
+        - '/${OUTDIR}/sage-plots-for-${JOB}.tex'
+        - /missfont.log
+        - /texput.log
+        - /texput.aux
+      intermediatePostScript: false
+      $PATH: /home/clemens/texlive/bin
+    type: ParsedYAML
+  Django.tex:
+    timeStamp: 2019-01-02T20:10:12.008Z
+    jobNames: []
+    hash: xXtvMLgH4UEz2FcUFhECOpxBSVGIy51nZbjcjtE7KlM=
+    type: LaTeX
+    subType: book
+  /home/clemens/.config/dicy/config.yaml:
+    timeStamp: 2019-01-02T20:12:51.796Z
+    jobNames: []
+    type: YAML
+  x.y-Nil:
+    jobNames: []
+    type: Nil
+  Django.log:
+    timeStamp: 2019-01-02T19:43:06.135Z
+    jobNames: []
+    hash: IEwHrJiQN6RgGIf2wTHjDufG7z0LYH6hBrY19n1TWRw=
+    type: LaTeXLog
+    subType: pdfTeX
+  Django.fls-ParsedFileListing:
+    jobNames: []
+    type: ParsedFileListing
+  Django.log-ParsedLaTeXLog:
+    timeStamp: 2019-01-02T20:12:52.027Z
+    jobNames: []
+    value:
+      messages:
+        - name: pdfTeX
+          severity: info
+          text: >-
+            fancyhdr 2017/06/30 v3.9a Extensive control of page headers and
+            footers
+          source:
+            file: /usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+          log:
+            file: Django.log
+            range:
+              start: 28
+              end: 28
+        - name: pdfTeX
+          severity: info
+          text: inputenc 2015/03/17 v1.2c Input encoding file
+          source:
+            file: /usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+          log:
+            file: Django.log
+            range:
+              start: 39
+              end: 39
+        - name: pdfTeX
+          severity: info
+          text: babel 2018/02/14 3.18 The Babel package
+          source:
+            file: /usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+          log:
+            file: Django.log
+            range:
+              start: 352
+              end: 352
+        - severity: error
+          name: pdfTeX
+          text: >-
+            Unknown option `ngerman'. Either you misspelled it or the language
+            definition file ngerman.ldf was not found.
+          log:
+            file: Django.log
+            range:
+              start: 357
+              end: 358
+          source:
+            file: /usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+            range:
+              start: 445
+              end: 445
+          category: Package babel
+        - severity: error
+          name: pdfTeX
+          text: You haven't specified a language option
+          log:
+            file: Django.log
+            range:
+              start: 371
+              end: 371
+          source:
+            file: /usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+            range:
+              start: 478
+              end: 478
+          category: Package babel
+        - name: pdfTeX
+          severity: info
+          text: fontenc 2017/04/05 v2.0i Standard LaTeX package
+          source:
+            file: /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+          log:
+            file: Django.log
+            range:
+              start: 384
+              end: 384
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Redeclaring font encoding T1
+          source:
+            file: /usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
+            range:
+              start: 48
+              end: 48
+          log:
+            file: Django.log
+            range:
+              start: 387
+              end: 387
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Checking defaults for OML/cmm/m/it ... okay
+          source:
+            file: Django.tex
+            range:
+              start: 9
+              end: 9
+          log:
+            file: Django.log
+            range:
+              start: 391
+              end: 392
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Checking defaults for T1/cmr/m/n ... okay
+          source:
+            file: Django.tex
+            range:
+              start: 9
+              end: 9
+          log:
+            file: Django.log
+            range:
+              start: 393
+              end: 394
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Checking defaults for OT1/cmr/m/n ... okay
+          source:
+            file: Django.tex
+            range:
+              start: 9
+              end: 9
+          log:
+            file: Django.log
+            range:
+              start: 395
+              end: 396
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Checking defaults for OMS/cmsy/m/n ... okay
+          source:
+            file: Django.tex
+            range:
+              start: 9
+              end: 9
+          log:
+            file: Django.log
+            range:
+              start: 397
+              end: 398
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Checking defaults for OMX/cmex/m/n ... okay
+          source:
+            file: Django.tex
+            range:
+              start: 9
+              end: 9
+          log:
+            file: Django.log
+            range:
+              start: 399
+              end: 400
+        - severity: info
+          name: pdfTeX
+          category: LaTeX Font
+          text: Checking defaults for U/cmr/m/n ... okay
+          source:
+            file: Django.tex
+            range:
+              start: 9
+              end: 9
+          log:
+            file: Django.log
+            range:
+              start: 401
+              end: 402
+      inputs: []
+      outputs:
+        - Django.pdf
+      calls: []
+    type: ParsedLaTeXLog
+  Django.pdf:
+    timeStamp: 2019-01-02T19:43:06.135Z
+    jobNames: []
+    hash: d4dY6MOBMOIz3ReR1c2dtTccTPYmKjIczU/ls/MEYUE=
+    type: PortableDocumentFormat
+rules:
+  - name: ApplyOptions
+    command: load
+    phase: initialize
+    parameters: []
+    inputs:
+      - file: dicy.yaml-ParsedYAML
+        type: default
+      - file: Django.yaml-ParsedYAML
+        type: default
+      - file: Django.tex-ParsedLaTeXMagic
+        type: default
+      - file: dicy-instance.yaml-ParsedYAML
+        type: default
+      - file: /home/clemens/.config/dicy/config.yaml-ParsedYAML
+        type: default
+    outputs: []
+  - name: LoadAndValidateCache
+    command: load
+    phase: initialize
+    parameters: []
+    inputs: []
+    outputs: []
+  - name: Migrate
+    command: load
+    phase: initialize
+    parameters: []
+    inputs: []
+    outputs: []
+  - name: ApplyOptions
+    command: load
+    phase: execute
+    parameters: []
+    inputs:
+      - file: dicy.yaml-ParsedYAML
+        type: default
+      - file: Django.yaml-ParsedYAML
+        type: default
+      - file: Django.tex-ParsedLaTeXMagic
+        type: default
+      - file: dicy-instance.yaml-ParsedYAML
+        type: default
+      - file: /home/clemens/.config/dicy/config.yaml-ParsedYAML
+        type: default
+    outputs: []
+  - name: ParseOptionsFile
+    command: load
+    phase: execute
+    parameters: []
+    inputs:
+      - file: /home/clemens/.config/dicy/config.yaml
+        type: default
+    outputs:
+      - file: /home/clemens/.config/dicy/config.yaml-ParsedYAML
+        type: default
+  - name: ParseLaTeXMagic
+    command: load
+    phase: execute
+    parameters:
+      - Django.tex
+    inputs:
+      - file: Django.tex
+        type: default
+    outputs:
+      - file: Django.tex-ParsedLaTeXMagic
+        type: default
+  - name: AssignJobNames
+    command: load
+    phase: finalize
+    parameters: []
+    inputs: []
+    outputs: []
+  - name: FindLogFiles
+    command: build
+    phase: initialize
+    parameters: []
+    inputs: []
+    outputs: []
+  - name: LaTeX
+    command: build
+    phase: execute
+    parameters:
+      - Django.tex
+    inputs:
+      - file: Django.tex
+        type: default
+      - file: Django.fls-ParsedFileListing
+        type: default
+      - file: Django.log-ParsedLaTeXLog
+        type: default
+    outputs:
+      - file: Django.pdf
+        type: default
+  - name: ParseLaTeXLog
+    command: build
+    phase: execute
+    parameters:
+      - Django.log
+    inputs:
+      - file: Django.log
+        type: default
+    outputs:
+      - file: Django.log-ParsedLaTeXLog
+        type: default
+  - name: LogProducedTargets
+    command: build
+    phase: finalize
+    parameters: []
+    inputs: []
+    outputs: []
+  - name: CheckForMissingBuildRule
+    command: build
+    phase: finalize
+    parameters:
+      - Django.tex
+    inputs:
+      - file: Django.tex
+        type: default
+    outputs: []
+  - name: FindLogFiles
+    command: log
+    phase: initialize
+    parameters: []
+    inputs: []
+    outputs: []
+  - name: ParseLaTeXLog
+    command: log
+    phase: execute
+    parameters:
+      - Django.log
+    inputs:
+      - file: Django.log
+        type: default
+    outputs:
+      - file: Django.log-ParsedLaTeXLog
+        type: default
+  - name: ReportLogMessages
+    command: log
+    phase: execute
+    parameters:
+      - Django.log-ParsedLaTeXLog
+    inputs:
+      - file: Django.log-ParsedLaTeXLog
+        type: default
+    outputs: []
+  - name: SaveCache
+    command: save
+    phase: execute
+    parameters: []
+    inputs: []
+    outputs: []
