@@ -39,7 +39,7 @@ Django stellt eine grundlegende Struktur für die Entwicklung zur Verfügung. So
 Es ist also kaum notwendig, jedoch durchaus möglich, als Entwickler noch SQL zu schreiben wenn man mit dem Django Web-Framework entwickelt.
 
 \section{Struktur}
-Ein typischer Django Server ist aus sogenannten ''Apps'' aufgebaut. Diese werden entweder vom Entwickler selber geschrieben oder können via pip (dem Python Paket Manager) installiert werden. Ein standard Verzeichnisaufbau ist in Abbildung 1 dargestellt.
+Ein typischer Django Server ist aus sogenannten ''Apps'' aufgebaut. Diese werden entweder vom Entwickler selber geschrieben oder können via pip (dem Python Paket Manager) installiert werden. Ein standard Verzeichnisaufbau ist in Abbildung 2 dargestellt.
 \subsection{Erstellung}
 Ein Django Projekt kann mit dem Befehl \$ django-admin startproject server initialisiert werden. Dadurch wird folgende Ordnerstruktur erstellt:
 \begin{figure}[H]
@@ -56,7 +56,16 @@ Ein Django Projekt kann mit dem Befehl \$ django-admin startproject server initi
 \end{figure}
 \subsection{manage.py}
 Die manage.py wird, wie der Name schon sagt, verwendet um den Server zu verwalten. Mit Hilfe der manage.py können beispielsweise Migrierungen an der Datenbank erstellt werden, Datenbanknutzer erstellt werden oder der Testserver zur Entwicklung kann gestartet werden. Die gleiche Funktionalität stellt auch der django-admin Befehl zur Verfügung\footnote{Django Dokumentation https://docs.djangoproject.com/en/2.1/ref/django-admin/}.
+
+\subsection{db.sqlite3}
+In dieser Datei wird die SQL Datenbank gespeichert, die der Server nutzt. Sie wird automatisch erstellt. Es können jedoch auch andere Datenbanken, wie zum Beispiel MongoDB oder eine extern gehostete Datenbank, verwendet werden.
+
 \subsection{server/server} 
+\subsection{\_\_init\_\_.py}
+Diese Datei befindet sich im Wurzelverzeichnis jeder App. Sie macht für Python erkennbar, dass es sich bei dem Inhalt dieses Ordners um ein Python Modul handelt. Somit kann die App einfach geteilt und von anderen Nutzern verwendet werden.
+
+\subsection{settings.py}
+
 
 \begin{figure}[H]
 		\dirtree{%
