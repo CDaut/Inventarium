@@ -3,6 +3,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
 \usepackage{libertine} 
+\usepackage{dirtree}
+\usepackage{float}
 
 \pagestyle{fancy}
 
@@ -30,9 +32,60 @@ die Entwicklung von Webservern geeignet, die eine Datenbank erfordern.\newline
 Django stellt eine grundlegende Struktur für die Entwicklung zur Verfügung. So zum Beispiel:
 \begin{itemize}
 	\item Eine settings.py Die genutzt werden kann um Konfigurationsmöglichkeiten zentral zu bündeln
-	\item Eine library um einfache Zugriffe auf Datenbanken zu tätigen
+	\item Eine library um einfache Zugriffe auf Datenbanken zu tätigen und sogenannte Models um Datenbankobjekte zu verwalten
 	\item Ein Routingsystem um eine einfachere Verwaltung von Urls zu gewährleisten
-	
+	\item Eine Grundstruktur, die Modularität unterstützt und das einfache Installieren oder Entfernen von sogenannten ''Apps'' ermöglicht
 \end{itemize}
+Es ist also kaum notwendig, jedoch durchaus möglich, als Entwickler noch SQL zu schreiben wenn man mit dem Django Web-Framework entwickelt.
+
+\section{Struktur}
+Ein typischer Django Server ist aus sogenannten ''Apps'' aufgebaut. Diese werden entweder vom Entwickler selber geschrieben oder können via pip (dem Python Paket Manager) installiert werden. Ein standard Verzeichnisaufbau ist in Abbildung 1 dargestellt.
+\subsection{Erstellung}
+Ein Django Projekt kann mit dem Befehl \$ django-admin startproject server initialisiert werden. Dadurch wird folgende Ordnerstruktur erstellt:
+\begin{figure}[H]
+	\dirtree{%
+	.1 server.
+	.2 manage.py.
+	.2 server.
+	.3 \_\_init\_\_.py.
+	.3 settings.py.
+	.3 urls.py.
+	.3 wsgi.py.
+}
+\caption{Verzeichnisstruktur, die der \$ django-admin startproject server Befehl erzeugt}
+\end{figure}
+\subsection{manage.py}
+Die manage.py wird, wie der Name schon sagt, verwendet um den Server zu verwalten. Mit Hilfe der manage.py können beispielsweise Migrierungen an der Datenbank erstellt werden, Datenbanknutzer erstellt werden oder der Testserver zur Entwicklung kann gestartet werden. Die gleiche Funktionalität stellt auch der django-admin Befehl zur Verfügung\footnote{Django Dokumentation https://docs.djangoproject.com/en/2.1/ref/django-admin/}.
+\subsection{server/server} 
+
+\begin{figure}[H]
+		\dirtree{%
+		.1 server.
+		.2 manage.py.
+		.2 db.sqlite3.
+		.2 server.
+		.3 \_\_init\_\_.py.
+		.3 settings.py.
+		.3 urls.py.
+		.3 wsgi.py.
+		.2 app1.
+		.3 \_\_init\_\_.py.
+		.3 admin.py.
+		.3 apps.py.
+		.3 forms.py.
+		.3 models.py.
+		.3 tests.py.
+		.3 urls.py.
+		.3 views.py.
+		.3 migrations.
+		.4 0001\_initial.py.
+	}
+	\caption{Die typische Verzeichnisstruktur eines Django Servers}
+\end{figure}
+
+
+
+
+
 
 \end{document}

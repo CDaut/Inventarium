@@ -1,2 +1,6 @@
 \babel@toc {ngerman}{}
 \contentsline {section}{\numberline {1}Einleitung}{3}
+\contentsline {section}{\numberline {2}Struktur}{3}
+\contentsline {subsection}{\numberline {2.1}Erstellung}{3}
+\contentsline {subsection}{\numberline {2.2}manage.py}{4}
+\contentsline {subsection}{\numberline {2.3}server/server}{4}
