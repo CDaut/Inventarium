@@ -1,9 +1,10 @@
 \babel@toc {ngerman}{}
 \contentsline {section}{\numberline {1}Einleitung}{3}
 \contentsline {section}{\numberline {2}Struktur}{3}
-\contentsline {subsection}{\numberline {2.1}Erstellung}{3}
+\contentsline {subsection}{\numberline {2.1}Erstellung}{4}
 \contentsline {subsection}{\numberline {2.2}manage.py}{4}
-\contentsline {subsection}{\numberline {2.3}db.sqlite3}{4}
-\contentsline {subsection}{\numberline {2.4}server/server}{4}
-\contentsline {subsection}{\numberline {2.5}\_\_init\_\_.py}{4}
-\contentsline {subsection}{\numberline {2.6}settings.py}{4}
+\contentsline {subsection}{\numberline {2.3}db.sqlite3}{5}
+\contentsline {subsection}{\numberline {2.4}server/server}{5}
+\contentsline {subsubsection}{\numberline {2.4.1}\_\_init\_\_.py}{5}
+\contentsline {subsubsection}{\numberline {2.4.2}settings.py}{5}
+\contentsline {subsubsection}{\numberline {2.4.3}urls.py}{5}
