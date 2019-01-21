@@ -6,6 +6,7 @@
 \usepackage{dirtree}
 \usepackage{float}
 \usepackage{minted}
+\usepackage{graphicx}
 
 \pagestyle{fancy}
 
@@ -38,7 +39,9 @@ Django stellt eine grundlegende Struktur für die Entwicklung zur Verfügung. So
 	\item Eine Grundstruktur, die Modularität unterstützt und das einfache Installieren oder Entfernen von sogenannten ''Apps'' ermöglicht
 \end{itemize}
 Es ist also kaum notwendig, jedoch durchaus möglich, als Entwickler noch SQL zu schreiben wenn man mit dem Django Web-Framework entwickelt.
-
+\section{Routing in Django}
+Das grundlegende und wichtigste Prinzip in Django ist das sogenannte ''Routing''. Dieses Prinzip beschreibt den Weg, den eine Anfrage zurücklegt um zu einer Antwort zu führen. 
+\subsection{}
 \section{Struktur}
 Ein typischer Django Server ist aus sogenannten ''Apps'' aufgebaut. Diese werden entweder vom Entwickler selber geschrieben oder können via pip (dem Python Paket Manager) installiert werden. Ein standard Verzeichnisaufbau ist in Abbildung 1 dargestellt.
 \newpage
@@ -111,10 +114,59 @@ Diese Datei ist der erste und wichtigste Teil des Django Routing Systems. Über 
 	path('settings/', include('settings_app.urls')),
 	]
 \end{minted}
-Hier werden zuerst Pakete für das admin-Interface und Pakete für das URL-Routing importiert. Anschließend wird eine Liste urlpatterns definiert. Diese enthält alle URL Pfade.
+Hier werden zuerst Pakete für das admin-Interface und Pakete für das URL-Routing importiert. Anschließend wird eine Liste urlpatterns definiert. Diese enthält alle URL Pfade. include() Importiert dabei die urls.py Dateien aus den anderen apps.
+
+\subsubsection{wsgi.py}
+Diese Datei stellt ein ''application'' genanntes WSGI Objekt zur Verfügung. Es wird zum starten des Testservers genutzt. In Verbindung mit ''mod\_wsgi'' kann auch Apache dieses Objekt nutzen.\footnote{Django Dokumentation https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/}
+\subsection{server/app1}
+Dieses Verzeichnis enthält alle Dateien, die eine App ausmachen. In diesem Fall heißt die App beispielhaft ''app1''. Die Dateien, die in Abb 1 erscheinen, jedoch hier nicht erwähnt werden, haben die selbe Funktion wie die gleichnamigen Dateien im ''server/server'' Ordner.
+
+\subsubsection{admin.py}
+Die admin.py dient dazu das Django Admin Interface zu konfigurieren. In ihr werden die Models registriert, die auf der admin Seite zu sehen sind, und wie diese dargestellt werden sollen. Sie sieht beispielsweise in der ''object\_adder'' app folgendermaßen aus:
+
+\begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
+from django.contrib import admin
+from .models import Object, Category
 
 
+class ObjectAdmin(admin.ModelAdmin):
+	list_display = ('title', 'ammout', 'uuid', 'img')
 
+
+class CategoryAdmin(admin.ModelAdmin):
+	list_display = ('name', 'id')
+
+
+# Register your models here.
+admin.site.register(Object, ObjectAdmin)
+admin.site.register(Category, CategoryAdmin)
+\end{minted}
+In Zeile 2 werden die in der models.py definierten Models importiert um Zugriff auf diese zu erlangen.
+\newline
+Anschließend wird für jedes Model eine Klasse erstellt. In dieser Klasse wird jeweils eine ''list\_display'' Variable definiert, die ein Tupel enthält, mit dem alle darzustellenden Attribute an die admin library übergeben werden können. Diese Abmin-Klassen müssen jetzt noch zusammen mit dem Model an die admin library übergeben werden. Dies erfolgt duch die Befehle in Zeile 14 und 15. Dieser Code erzeugt demnach folgendes Admin-Interface:
+\newline
+\begin{center}
+\includegraphics[width=\linewidth, height=7.5cm]{django_admin_objects.png}
+\quad
+\\[\baselineskip]% adds vertical line spacing
+\includegraphics[width=\linewidth]{django_admin_cats.png}
+\end{center}
+
+Ohne die ''list\_display'' Angebe würde nur der primary key des Models angezeigt und das Interface sähe folgendermaßen aus:
+\newline
+\begin{center}
+	\includegraphics[width=\linewidth]{django_admin_obj_pk.png}
+\end{center}
+\subsubsection{apps.py}
+Hier ist der Name der app definiert. Diese Datei ist außerdem notwendig, damit die App von Django als solche erkannt wird.
+\begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
+from django.apps import AppConfig
+
+class ObjectAdderConfig(AppConfig):
+	name = 'objectadder'
+\end{minted}
+\subsubsection{forms.py}
+In dieser Datei werden Formulare definiert. So beispielsweise das Formular zur Erstellung von Objekten und Kategorien. 
 
 
 \end{document}
