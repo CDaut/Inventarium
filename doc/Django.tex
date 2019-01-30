@@ -39,12 +39,8 @@ Django stellt eine grundlegende Struktur für die Entwicklung zur Verfügung. So
 	\item Eine Grundstruktur, die Modularität unterstützt und das einfache Installieren oder Entfernen von sogenannten ''Apps'' ermöglicht
 \end{itemize}
 Es ist also kaum notwendig, jedoch durchaus möglich, als Entwickler noch SQL zu schreiben wenn man mit dem Django Web-Framework entwickelt.
-\section{Routing in Django}
-Das grundlegende und wichtigste Prinzip in Django ist das sogenannte ''Routing''. Dieses Prinzip beschreibt den Weg, den eine Anfrage zurücklegt um zu einer Antwort zu führen. 
-\subsection{}
 \section{Struktur}
 Ein typischer Django Server ist aus sogenannten ''Apps'' aufgebaut. Diese werden entweder vom Entwickler selber geschrieben oder können via pip (dem Python Paket Manager) installiert werden. Ein standard Verzeichnisaufbau ist in Abbildung 1 dargestellt.
-\newpage
 \begin{figure}[H]
 	\dirtree{%
 		.1 server.
@@ -92,7 +88,7 @@ In dieser Datei wird die SQL Datenbank gespeichert, die der Server nutzt. Sie wi
 
 \subsection{server/server} 
 \subsubsection{\_\_init\_\_.py}
-Diese Datei befindet sich im Wurzelverzeichnis jeder App. Sie macht für Python erkennbar, dass es sich bei dem Inhalt dieses Ordners um ein Python Modul handelt. Somit kann die App einfach geteilt und von anderen Nutzern verwendet werden.
+Diese Datei befindet sich im Wurzelverzeichnis jeder App. Sie macht für Python erkennbar, dass es sich bei dem Inhalt dieses Ordners um ein Python Modul handelt. Somit kann die App einfach geteilt und von anderen Nutzern verwendet werden.[linenos, frame=lines, framesep=2mm]{Python}
 
 \subsubsection{settings.py}
 In dieser Datei befinden sich die Einstellungen für den Django Server. Mit ihrer Hilfe werden Zeitzone, Sprache, Datenbankkonfiguration und viele andere Konfigurationen verwaltet. Man kann sie auch verwenden um eigene Einstellungsmöglichkeiten anzubieten. Dafür definiert man eine Konstante (in Python typischerweise durch Großbuchstaben ausgedrückt) und einen Wert. Zum Beispiel\newline LOGIN\_REDIRECT\_URL = ''/''. Im Falle dieses Projektes wurde beispielsweise die Konstante LOGFILE = 'serverlog.log' definiert um zentral auf die Logdatei zugreifen zu können. Auf die in der settings.py definierten Werte kann aus jeder App zugegriffen werden, indem unter Benutzung der Anweisung\newline
@@ -166,7 +162,83 @@ class ObjectAdderConfig(AppConfig):
 	name = 'objectadder'
 \end{minted}
 \subsubsection{forms.py}
-In dieser Datei werden Formulare definiert. So beispielsweise das Formular zur Erstellung von Objekten und Kategorien. 
+In dieser Datei werden Formulare definiert. So beispielsweise das Formular zur Erstellung von Objekten und Kategorien, das folgendermaßen aussieht:
+\begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
+from django.forms import ModelForm, TextInput	
+from .models import Object, Category
+	
+	
+class ObjectForm(ModelForm):
+	class Meta:
+		model = Object
+		fields = ('ammout', 'title', 'img', 
+		'description', 'category')
+		widgets = {
+			'title': TextInput(),
+		}
+	
+	
+class CategoryForm(ModelForm):
+	class Meta:
+		model = Category
+		fields = ['name']
+		widgets = {
+			'name': TextInput()
+		}
+\end{minted}
+Hier werden zwei Formulare definiert. Es wird angegeben mit welchem model das Formular asoziiert werden soll und welche Felder angezeigt werden sollen. Außerdem wird definiert, dass für das name und das title Feld ein ''TextInput()'' Feld genutzt werden soll.
+
+
+\section{Routing in Django}
+Das grundlegende und wichtigste Prinzip in Django ist das sogenannte ''Routing''. Dieses Prinzip beschreibt den Weg, den eine Anfrage zurücklegt um zu einer Antwort zu führen. Routing in Django funktioniert, indem die Url mit Hilfe von Regular Expressions in Teile aufgespalten wird, die dann einzeln bis letztendlich ein HTML Template zurück gegeben wird verfolgt werden.
+\subsection{Root Url Config}
+Diese Datei ist die grundlegende Url Konfigurationsdatei. In ihr schaut der Server zuerst nach. Sie befindet sich im server/server/urls.py Ordner und gehört zur Hauptapp des Servers. Sie kann beispielsweise folgendermaßen aussehen:
+\begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
+"""invsystem URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more
+information please see:
+https://docs.djangoproject.com/en/2.1/topics/http/urls/
+Examples:
+Function views
+1. Add an import:  from my_app import views
+2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+1. Add an import:  from other_app.views import Home
+2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+1. Import the include() function: 
+from django.urls import include, path
+2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+path('admin/', admin.site.urls),
+path('accounts/', include('django.contrib.auth.urls')),
+path('', include('user_manager.urls')),
+path('add/', include('object_adder.urls')),
+path('list/', include('object_lister.urls')),
+path('settings/', include('settings_app.urls')),
+]
+\end{minted}
+Die Kommentare werden beim Erstellen des Projektes automatisch generiert. Diese Datei erzeugt also sechs URL Pfade. Alle Pfade bis auf den ''/admin'' Pfad zeigen hier auf die urls.py Datei einer anderen App. Dies wird mit dem ''include()'' Statement erreicht. Die ''/admin'' Url wird mit hilfe des Admin Paketes gehandhabt, dass automatisch ein Admin Interface zur Datenbankverwaltung erzeugt. 
+\subsection{Weitere Url Konfigurationsdateien}
+Mithilfe der ''include()'' Statements kann die Anfrage jetzt theoretisch durch eine unbegrenzte Zahl von urls.py Dateien geleitet werden. In diesem Beispiel wird in der settings\_app.urls jedoch direkt der sogenannte ''View'' zurück gegeben.
+\newpage
+\begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
+from django.urls import path
+from . import views
+
+urlpatterns = [
+path('', views.index, name='settings_index'),
+]
+\end{minted}
+Dies liegt daran, dass in der ''path()'' Funktion kein ''include()'' Statement mehr steht sondern ''views.index''. Außerdem wird in der zweiten Zeile die ''views.py'' der App importiert.
+\subsection{View}
+Im sogenannten View wird findet die eigentliche Programmlogik statt. Hier werden Daten an die ''render()'' Funktion übergeben, die das gerenderte HTML Template zurück gibt. Diese Daten können beispielsweise aus einem Formular stammen oder von der Datenbank abgefragt sein. Hier werden auch POST Anfragen bearbeitet.
+\section{Template rendering}
 
 
 \end{document}
