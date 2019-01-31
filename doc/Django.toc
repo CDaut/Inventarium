@@ -14,13 +14,13 @@
 \contentsline {subsubsection}{\numberline {2.5.2}apps.py}{8}
 \contentsline {subsubsection}{\numberline {2.5.3}forms.py}{8}
 \contentsline {subsubsection}{\numberline {2.5.4}models.py}{9}
-\contentsline {subsubsection}{\numberline {2.5.5}tests.py}{9}
-\contentsline {subsubsection}{\numberline {2.5.6}views.py}{9}
-\contentsline {subsubsection}{\numberline {2.5.7}migrations}{9}
-\contentsline {section}{\numberline {3}Routing in Django}{9}
-\contentsline {subsection}{\numberline {3.1}Root Url Config}{9}
-\contentsline {subsection}{\numberline {3.2}Weitere Url Konfigurationsdateien}{10}
-\contentsline {subsection}{\numberline {3.3}View}{11}
-\contentsline {section}{\numberline {4}Template rendering}{11}
-\contentsline {section}{\numberline {5}Den Inventarisierungsserver einrichten}{11}
-\contentsline {section}{\numberline {6}Erkl\IeC {\"a}rung der Benutzeroberfl\IeC {\"a}che}{11}
+\contentsline {subsubsection}{\numberline {2.5.5}tests.py}{10}
+\contentsline {subsubsection}{\numberline {2.5.6}views.py}{10}
+\contentsline {subsubsection}{\numberline {2.5.7}migrations}{10}
+\contentsline {section}{\numberline {3}Routing in Django}{10}
+\contentsline {subsection}{\numberline {3.1}Root Url Config}{10}
+\contentsline {subsection}{\numberline {3.2}Weitere Url Konfigurationsdateien}{11}
+\contentsline {subsection}{\numberline {3.3}View}{12}
+\contentsline {section}{\numberline {4}Template rendering}{12}
+\contentsline {section}{\numberline {5}Den Inventarisierungsserver einrichten}{12}
+\contentsline {section}{\numberline {6}Erkl\IeC {\"a}rung der Benutzeroberfl\IeC {\"a}che}{12}

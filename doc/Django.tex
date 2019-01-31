@@ -188,6 +188,25 @@ class CategoryForm(ModelForm):
 \end{minted}
 Hier werden zwei Formulare definiert. Es wird angegeben mit welchem model das Formular asoziiert werden soll und welche Felder angezeigt werden sollen. Außerdem wird definiert, dass für das name und das title Feld ein ''TextInput()'' Feld genutzt werden soll.
 \subsubsection{models.py}
+In der models.py werden Models definiert, die in Verbindung mit der Datenbank genutzt werden können. Diese werden innerhalb von Django als Objekte repräsentiert, können jedoch trotzdem in einer SQL Datenbank gespeichert werden. Eine mopels.py kann beispielsweise folgendermaßen aussehen:
+\begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
+from django.db import models
+import uuid
+
+	class Category(models.Model):
+		name = models.TextField(blank=False, max_length=150)
+		id = models.UUIDField(
+		primary_key=True, default=uuid.uuid4, editable=False
+		)	
+		categories = models.Manager()
+		
+		def __str__(self):
+			return self.name
+	
+\end{minted}
+In dieser Datei wird ein Model definiert. Es heißt ''Category'' und hat zwei Eigenschaften. Eine ID und einen Namen. Es wird dafür erst eine Klasse namens ''Category'' erstellt, die Subklasse der django.db.models.model Klasse ist. In dieser Klasse werden jetzt die Datenfelder des Objektes definiert, diese sind später in der Datenbank die Spalten. den Datenfeldern können sogenannte Felder zugewiesen werden, die angeben welcher Datentyp in dieser Spalte steht\footnote{ Django Model field reference https://docs.djangoproject.com/en/2.1/ref/models/fields/}. Ein UUIDField fasst zum Beispiel eine UUID, ein TextField Text ein DateField ein Datum und so weiter. Der Parameter ''blank'' gibt an ob das Feld bei der Erstellung des Objektes blank gelassen werden darf. ''max\_length'' ist ein für das TextField spezifischer Parameter, die maximale Länge des Strings angibt, der gespeichert werden kann. ''primary\_key'' gibt an ob dieses Feld der primary Key in der Datenbank ist. Dieser Wert kann nur einem Feld zugewiesen werden. Wenn kein Feld als primary Key gesetzt wurde, erstellt Django  automatisch ein ID Feld, das dann primary Key ist. Der ''default'' Wert gibt an, Welcher Standardwert in das Feld eingespeichert werden soll, wenn vom Nutzer kein Wert übergeben wurde. ''editable'' gibt an, ob das Feld manuell bearbeitet werden kann, zum Beispiel im admin Interface.\newline
+der Aufruf ''categories = models.Manager()'' ist notwendig um via ''categories = Category.categories.all()'' alle Kategorien auf einmal als Liste abfragen zu können.\newline
+''def \_\_str\_\_(self):'' ist eine sogenannte ''magic method'' in Python. Sie ermöglicht es anzugeben, wie das Objekt als String repräsentiert werden soll. Wenn also ''print(category)'' aufgerufen wird, wird aufgrund dieser Methode an stelle des primary Keys, der UUID, der Name ausgegeben.
 \subsubsection{tests.py}
 \subsubsection{views.py}
 \subsubsection{migrations}
