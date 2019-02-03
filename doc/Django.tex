@@ -7,6 +7,7 @@
 \usepackage{float}
 \usepackage{minted}
 \usepackage{graphicx}
+\usepackage[hyphens]{url}
 
 \pagestyle{fancy}
 
@@ -208,8 +209,22 @@ In dieser Datei wird ein Model definiert. Es heißt ''Category'' und hat zwei Ei
 der Aufruf ''categories = models.Manager()'' ist notwendig um via ''categories = Category.categories.all()'' alle Kategorien auf einmal als Liste abfragen zu können.\newline
 ''def \_\_str\_\_(self):'' ist eine sogenannte ''magic method'' in Python. Sie ermöglicht es anzugeben, wie das Objekt als String repräsentiert werden soll. Wenn also ''print(category)'' aufgerufen wird, wird aufgrund dieser Methode an stelle des primary Keys, der UUID, der Name ausgegeben.
 \subsubsection{tests.py}
+Django weist ein umfangreiches System zur Unterstützung von testgetriebener Entwicklung auf. Dieses Testsystem basiert auf dem ''unittest'' Pythonmodul. Die tests.py ist die Datei, in der die Tests für diese App geschrieben werden sollen
+\footnote{Writing and running tests Django Dokumentation \newline https://docs.djangoproject.com/en/2.1/topics/testing/overview/}.
+Mit Hilfe der Tests können beispielsweise Methoden von Models getestet werden oder es kann überprüft werden, ob das richtige Template mit dem richtigen Kontext gerendert wird.
 \subsubsection{views.py}
+Diese Datei enthält alle ''views''. Ein View ist eine Methode, die auf die Anfrage des Nutzers reagiert, alle nötigen Berechnungen tätigt und letztendlich das gerenderte Template zurück gibt. Ein View muss immer ein Objekt des Typen ''HttpResponse'' oder einer seiner Subklassen zurück geben. Ein einfacher View kann zum Beispiel folgendermaßen aussehen:
+\begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
+from django.shortcuts import render
+
+def mainview(request):
+	context = {'a': 'b', 'beispiel': True}
+    return render(request, 'exampleapp/index.html', context)
+\end{minted} 
+Die ''context'' Varieble, wird von der render() Methode genutzt um Variablen im Template zu rendern. Die Werte im context können beispielsweise aus der Datenbank abgefragt werden.
 \subsubsection{migrations}
+Dieser Ordner enthält Dateien, die durch den makemigrations Befehl erstellt wurden. Sie geben an, ob und wie die Models verändert wurden. Man muss diese Dateien in der Regel als Entwickler nicht selber bearbeiten.
+
 
 
 \section{Routing in Django}
