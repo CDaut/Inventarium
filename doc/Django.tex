@@ -8,6 +8,7 @@
 \usepackage{minted}
 \usepackage{graphicx}
 \usepackage[hyphens]{url}
+\usepackage{listings}
 
 \pagestyle{fancy}
 
@@ -18,6 +19,23 @@
 \title{Das Django Web-Framework dargestellt anhand des Praktischen Beispieles eines Inventarisierungssystemes}
 \author{Clemens Dautermann}
 \date{2. Januar 2019 bis \today}
+
+\lstset{literate=
+	{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+	{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+	{à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+	{À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+	{ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+	{Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+	{â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+	{Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+	{Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
+	{œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+	{ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+	{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+	{€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+	{»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
+}
 
 \begin{document}
 
@@ -277,6 +295,37 @@ Dies liegt daran, dass in der ''path()'' Funktion kein ''include()'' Statement m
 \subsection{View}
 Im sogenannten View wird findet die eigentliche Programmlogik statt. Hier werden Daten an die ''render()'' Funktion übergeben, die das gerenderte HTML Template zurück gibt. Diese Daten können beispielsweise aus einem Formular stammen oder von der Datenbank abgefragt sein. Hier werden auch POST Anfragen bearbeitet.
 \section{Template rendering}
+Ein weiterer zentraler Aspekt des Django Frameworks ist das sogenannte ''Template rendering''. Es ermöglicht Variabln und dynamische Inhalte in das HTML Dokument einzubinden. 
+\subsection{Variablen an ein Template übergeben}
+Um Variablen an das Template weiterzugeben wird im entsprechenden view als dritte Variable ein Dictionary übergeben. Auf die Werte in diesem Dictionary cann jetzt innerhalb des Templates beim rendern zugegriffen werden.
+\begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
+from django.shortcuts import render
+
+def mainview(request):
+	context = {'a': 'b', 'beispiel': True, 'liste': range(10)}
+	return render(request, 'exampleapp/index.html', context)
+\end{minted}
+In diesem Beispiel wird context = {'a': 'b', 'beispiel': True, 'liste': range(10)} als Kontextdictionary übergeben. Das heißt innerhalb des HTML Templates kann auf die Variablen ''a'', ''beispiel'' und ''liste'' zugegriffen werden.
+\subsection{''Django template language''}
+In django existiert eine kleine eigene Skriptsprache, die ''django template language''. Mit ihrer Hilfe kann in Templates auf den übergebenen Kontext eingegangen werden. Sie enthält if-Abfragen, for-Schleifen und vieles mehr, kann aber auch einfach Variablen einbinden.
+\subsubsection{Ein Beispiel}
+Im folgenden Beispiel wird eine Liste namens ''Items'' übergeben. Es soll erst überprüft werden ob diese wirklich übergeben worden ist, und dann jedes Element ausgegeben werden. Der $<$head$>$ tag wurde im Beispiel weggelassen, da er für diese Demonstration irrelevant ist.
+\begin{lstlisting}[language=html]
+<html>
+  <body>
+  {% if Items is not None %}
+  <ul>
+      {% for item in items %}
+      	<li>{{item.name}}</li>
+      {% endfor %}
+  </ul>
+  {% else %}
+  	<p>Es wurde keine Liste übergeben</p>
+  {% endif %}
+  </body>
+</html>
+\end{lstlisting}
+
 \section{Den Inventarisierungsserver einrichten}
 \section{Erklärung der Benutzeroberfläche}
 
