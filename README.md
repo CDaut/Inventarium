@@ -25,16 +25,23 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 f1b377c3700f        invsystem_web       "python3 manage.py r…"   1 minute ago          Up 1 minute          0.0.0.0:8000->8000/tcp   invsystem_web_1
 1289f9bcdd04        postgres            "docker-entrypoint.s…"   1 minute ago          Up 1 minute          0.0.0.0:5432->5432/tcp   invsystem_db_1
 ```
+
 You need to copy the `CONTAINER ID` for the image `invsystem_web`
+
 2. Execute the command `docker exec -i -t <CONTAINER ID> /bin/bash`
+
 3. You are now attatched to the docker container via a shell. <br>
 Enter `python3 manage.py makemigrations` and `python3 manage.py migrate`.<br> 
 This sets up the database and initializes it. 
+
 4. Create the superuser using `python3 manage.py createsuperuser` and enter the 
 requested information
+
 5. Open your browser and visit `localhost:8000` or click [here](http://localhost:8000)
+
 6. Click the "Einloggen" button in the top right corner and log in with the account you 
 just created using `createsuperuser`
+
 7. You can now access the server and use all of its features
 
 If you need the django admin panel you can just access `localhost:8000/admin` and log in 
