@@ -307,7 +307,7 @@ def mainview(request):
 \end{minted}
 In diesem Beispiel wird context = {'a': 'b', 'beispiel': True, 'liste': range(10)} als Kontextdictionary übergeben. Das heißt innerhalb des HTML Templates kann auf die Variablen ''a'', ''beispiel'' und ''liste'' zugegriffen werden.
 \subsection{''Django template language''}
-In django existiert eine kleine eigene Skriptsprache, die ''django template language''. Mit ihrer Hilfe kann in Templates auf den übergebenen Kontext eingegangen werden. Sie enthält if-Abfragen, for-Schleifen und vieles mehr, kann aber auch einfach Variablen einbinden.
+In django existiert eine kleine eigene Skriptsprache, die ''django template language''. Mit ihrer Hilfe kann in Templates auf den übergebenen Kontext eingegangen werden. Sie enthält if-Abfragen, for-Schleifen und vieles mehr, kann aber auch einfach Variablen einbinden. ''{{ var }}'' gibt dabei immer eine einzubindende Variable an, ''\{\%\%\}'' zeigt Befehlssequenzen an. 
 \subsubsection{Ein Beispiel}
 Im folgenden Beispiel wird eine Liste namens ''Items'' übergeben. Es soll erst überprüft werden ob diese wirklich übergeben worden ist, und dann jedes Element ausgegeben werden. Der $<$head$>$ tag wurde im Beispiel weggelassen, da er für diese Demonstration irrelevant ist.
 \begin{lstlisting}[language=html]
@@ -325,8 +325,18 @@ Im folgenden Beispiel wird eine Liste namens ''Items'' übergeben. Es soll erst 
   </body>
 </html>
 \end{lstlisting}
+\subsection{Rendering}
+Das ''rendering'' findet in dem Moment statt, wo in dem View die ''render()'' Methode aufgerufen wird. Diese erstellt aus dem Kontext und dem Template eine fertige HTML Datei, die dem Benutzer angezeigt wird. Sie beachtet dazu die Kontrollsequenzen im Template und setzt die entsprechenden Variablen aus dem Kontext ein.
 
 \section{Den Inventarisierungsserver einrichten}
+Der Inventarisierungsserver basiert auf einem Virutualisierungssystem namens Docker. Um den Server einzurichten wird daher Docker sowie das zugehörige Programm Docker compose benötigt.
+\subsection{Installation}
+\begin{enumerate}
+	\item Installieren sie Docker und Docker compose. Sie sind auf\newline \url{https://www.docker.com/get-started} und\newline \url{https://docs.docker.com/compose/install/}\newline verfügbar. Dort ist auch der Installationsvorgang genauer beschrieben. 
+	\item Clonen sie das GitHub Repository von\newline \url{git@github.com:Clemens-Dautermann/Inventarium.git}
+	
+
+\end{enumerate}
 \section{Erklärung der Benutzeroberfläche}
 
 
