@@ -20,12 +20,13 @@
 \contentsline {section}{\numberline {3}Routing in Django}{11}
 \contentsline {subsection}{\numberline {3.1}Root Url Config}{11}
 \contentsline {subsection}{\numberline {3.2}Weitere Url Konfigurationsdateien}{12}
-\contentsline {subsection}{\numberline {3.3}View}{13}
-\contentsline {section}{\numberline {4}Template rendering}{13}
+\contentsline {subsection}{\numberline {3.3}View}{12}
+\contentsline {section}{\numberline {4}Template rendering}{12}
 \contentsline {subsection}{\numberline {4.1}Variablen an ein Template \IeC {\"u}bergeben}{13}
 \contentsline {subsection}{\numberline {4.2}''Django template language''}{13}
-\contentsline {subsubsection}{\numberline {4.2.1}Ein Beispiel}{14}
+\contentsline {subsubsection}{\numberline {4.2.1}Ein Beispiel}{13}
 \contentsline {subsection}{\numberline {4.3}Rendering}{14}
 \contentsline {section}{\numberline {5}Den Inventarisierungsserver einrichten}{14}
 \contentsline {subsection}{\numberline {5.1}Installation}{14}
+\contentsline {subsection}{\numberline {5.2}Einen Datenbankbenutzer erstellen}{14}
 \contentsline {section}{\numberline {6}Erkl\IeC {\"a}rung der Benutzeroberfl\IeC {\"a}che}{15}

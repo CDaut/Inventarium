@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage[hyphens]{url}
 \usepackage{listings}
+\usepackage{booktabs}
 
 \pagestyle{fancy}
 
@@ -116,18 +117,18 @@ In dieser Datei befinden sich die Einstellungen für den Django Server. Mit ihre
 \subsubsection{urls.py}
 Diese Datei ist der erste und wichtigste Teil des Django Routing Systems. Über sie werden die grundlegenden URL Strukturen des Servers definiert. Sie importiert urls.py Dateien aus anderen Apps und definiert wie auf eine Bestimmte URL reagiert werden soll. Im Falle dieses Projektes sieht sie folgendermaßen aus:
 
-\begin{minted}[linenos,numbersep=5pt,frame=none,framesep=1mm]{Python}
-	from django.contrib import admin
-	from django.urls import path, include
+\begin{minted}[linenos,numbersep=5pt,frame=none,framesep=2mm]{Python}
+from django.contrib import admin
+from django.urls import path, include
 	
-	urlpatterns = [
-	path('admin/', admin.site.urls),
-	path('accounts/', include('django.contrib.auth.urls')),
-	path('', include('user_manager.urls')),
-	path('add/', include('object_adder.urls')),
-	path('list/', include('object_lister.urls')),
-	path('settings/', include('settings_app.urls')),
-	]
+urlpatterns = [
+path('admin/', admin.site.urls),
+path('accounts/', include('django.contrib.auth.urls')),
+path('', include('user_manager.urls')),
+path('add/', include('object_adder.urls')),
+path('list/', include('object_lister.urls')),
+path('settings/', include('settings_app.urls')),
+]
 \end{minted}
 Hier werden zuerst Pakete für das admin-Interface und Pakete für das URL-Routing importiert. Anschließend wird eine Liste urlpatterns definiert. Diese enthält alle URL Pfade. include() Importiert dabei die urls.py Dateien aus den anderen apps.
 
@@ -282,7 +283,7 @@ path('settings/', include('settings_app.urls')),
 Die Kommentare werden beim Erstellen des Projektes automatisch generiert. Diese Datei erzeugt also sechs URL Pfade. Alle Pfade bis auf den ''/admin'' Pfad zeigen hier auf die urls.py Datei einer anderen App. Dies wird mit dem ''include()'' Statement erreicht. Die ''/admin'' Url wird mit hilfe des Admin Paketes gehandhabt, dass automatisch ein Admin Interface zur Datenbankverwaltung erzeugt. 
 \subsection{Weitere Url Konfigurationsdateien}
 Mithilfe der ''include()'' Statements kann die Anfrage jetzt theoretisch durch eine unbegrenzte Zahl von urls.py Dateien geleitet werden. In diesem Beispiel wird in der settings\_app.urls jedoch direkt der sogenannte ''View'' zurück gegeben.
-\newpage
+
 \begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
 from django.urls import path
 from . import views
@@ -334,9 +335,23 @@ Der Inventarisierungsserver basiert auf einem Virutualisierungssystem namens Doc
 \begin{enumerate}
 	\item Installieren sie Docker und Docker compose. Sie sind auf\newline \url{https://www.docker.com/get-started} und\newline \url{https://docs.docker.com/compose/install/}\newline verfügbar. Dort ist auch der Installationsvorgang genauer beschrieben. 
 	\item Clonen sie das GitHub Repository von\newline \url{git@github.com:Clemens-Dautermann/Inventarium.git}
-	
-
+	\item Entpacken sie das Repository und öffnen sie ein Terminal im entpackten Ordner, wo sich die Datei ''docker-compose.yml'' befindet.
+	\item Führen sie den Befehl ''docker-compose up'' aus. Dieser wird automatisch Container für eine PostgresSQL Datenbank und den Inventarisierungsserver herunterladen und konfigurieren. Die Ausführung dieses Befehls kann einige Zeit dauern und benötigt eine aktive Internetverbindung sowie einiges an Festplattenspeicherplatz
+	\item Sie müssen jetzt einen Datenbankbenutzer erstellen
 \end{enumerate}
+\subsection{Einen Datenbankbenutzer erstellen}
+Aus Sicherheitsgründen ist das gesamte Webinterface des Servers passwortgeschützt. Das heißt, es wird ein Nutzerkonto benötigt um auf dieses zugreifen zu können. Da aber noch kein Benutzer existiert um überhaupt auf die Datenbank zuzugreifen und weitere Nutzer zu erstellen, muss direkt an der Datenbank ein Nutzer erstellt werden. Dies tun sie folgendermaßen:
+\begin{enumerate}
+	\item Führen sie den Befehl ''docker ps'' aus während der Server läuft. Die Ausgabe sollte etwa folgendermaßen aussehen:\newline
+		\begin{tabular}{@{}lllll@{}}
+			\toprule
+			CONTAINER ID & IMAGE          & COMMAND                & CREATED      & STATUS      \\ \midrule
+			f1b377c3700f & invsystem\_web & "python3 manage.py r…" & 1 minute ago & Up 1 minute \\
+			1289f9bcdd04 & postgres       & "docker-entrypoint.s…" & 1 minute ago & Up 1 minute \\ \bottomrule
+		\end{tabular}
+	\item Kopieren sie die CONTAINER ID von invsystem\_web und führen sie den Befehl ''docker exec -i -t $<$CONTAINER ID$>$ /bin/bash'' aus. Dieser öffnet eine Shell im Container des Servers.
+\end{enumerate}
+
 \section{Erklärung der Benutzeroberfläche}
 
 
