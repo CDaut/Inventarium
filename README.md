@@ -31,7 +31,6 @@ You need to copy the `CONTAINER ID` for the image `invsystem_web`
 2. Execute the command `docker exec -i -t <CONTAINER ID> /bin/bash`
 
 3. You are now attatched to the docker container via a shell. <br>
-
 Enter `python3 manage.py makemigrations` and `python3 manage.py migrate`.<br> 
 This sets up the database and initializes it. 
 
