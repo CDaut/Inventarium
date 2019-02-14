@@ -31,3 +31,5 @@
 \contentsline {subsection}{\numberline {5.2}Einen Datenbankbenutzer erstellen}{14}
 \contentsline {section}{\numberline {6}Erkl\IeC {\"a}rung der Benutzeroberfl\IeC {\"a}che}{15}
 \contentsline {subsection}{\numberline {6.1}Das Django Adminpanel}{15}
+\contentsline {subsection}{\numberline {6.2}Das Inventarisierungsinterface}{15}
+\contentsline {subsection}{\numberline {6.3}Inventar\IeC {\"u}bersicht}{15}

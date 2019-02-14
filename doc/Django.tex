@@ -333,30 +333,33 @@ Das ''rendering'' findet in dem Moment statt, wo in dem View die ''render()'' Me
 Der Inventarisierungsserver basiert auf einem Virutualisierungssystem namens Docker. Um den Server einzurichten wird daher Docker sowie das zugehörige Programm Docker compose benötigt.
 \subsection{Installation}
 \begin{enumerate}
-	\item Installieren sie Docker und Docker compose. Sie sind auf\newline \url{https://www.docker.com/get-started} und\newline \url{https://docs.docker.com/compose/install/}\newline verfügbar. Dort ist auch der Installationsvorgang genauer beschrieben. 
-	\item Clonen sie das GitHub Repository von\newline \url{git@github.com:Clemens-Dautermann/Inventarium.git}
-	\item Entpacken sie das Repository und öffnen sie ein Terminal im entpackten Ordner, wo sich die Datei ''docker-compose.yml'' befindet.
-	\item Führen sie den Befehl ''docker-compose up'' aus. Dieser wird automatisch Container für eine PostgresSQL Datenbank und den Inventarisierungsserver herunterladen und konfigurieren. Die Ausführung dieses Befehls kann einige Zeit dauern und benötigt eine aktive Internetverbindung sowie einiges an Festplattenspeicherplatz
+	\item Installieren Sie Docker und Docker compose. Sie sind auf\newline \url{https://www.docker.com/get-started} und\newline \url{https://docs.docker.com/compose/install/}\newline verfügbar. Dort ist auch der Installationsvorgang genauer beschrieben. 
+	\item Clonen Sie das GitHub Repository von\newline \url{git@github.com:Clemens-Dautermann/Inventarium.git}
+	\item Entpacken Sie das Repository und öffnen Sie ein Terminal im entpackten Ordner, wo sich die Datei ''docker-compose.yml'' befindet.
+	\item Führen Sie den Befehl ''docker-compose up'' aus. Dieser wird automatisch Container für eine PostgresSQL Datenbank und den Inventarisierungsserver herunterladen und konfigurieren. Die Ausführung dieses Befehls kann einige Zeit dauern und benötigt eine aktive Internetverbindung sowie einiges an Festplattenspeicherplatz
 	\item Sie müssen jetzt einen Datenbankbenutzer erstellen
 \end{enumerate}
 \subsection{Einen Datenbankbenutzer erstellen}
-Aus Sicherheitsgründen ist das gesamte Webinterface des Servers passwortgeschützt. Das heißt, es wird ein Nutzerkonto benötigt um auf dieses zugreifen zu können. Da aber noch kein Benutzer existiert um überhaupt auf die Datenbank zuzugreifen und weitere Nutzer zu erstellen, muss direkt an der Datenbank ein Nutzer erstellt werden. Dies tun sie folgendermaßen:
+Aus Sicherheitsgründen ist das gesamte Webinterface des Servers passwortgeschützt. Das heißt, es wird ein Nutzerkonto benötigt um auf dieses zugreifen zu können. Da aber noch kein Benutzer existiert um überhaupt auf die Datenbank zuzugreifen und weitere Nutzer zu erstellen, muss direkt an der Datenbank ein Nutzer erstellt werden. Dies tun Sie folgendermaßen:
 \begin{enumerate}
-	\item Führen sie den Befehl ''docker ps'' aus während der Server läuft. Die Ausgabe sollte etwa folgendermaßen aussehen:\newline
+	\item Führen Sie den Befehl ''docker ps'' aus während der Server läuft. Die Ausgabe sollte etwa folgendermaßen aussehen:\newline
 		\begin{tabular}{@{}lllll@{}}
 			\toprule
 			CONTAINER ID & IMAGE          & COMMAND                & CREATED      & STATUS      \\ \midrule
 			f1b377c3700f & invsystem\_web & "python3 manage.py r…" & 1 minute ago & Up 1 minute \\
 			1289f9bcdd04 & postgres       & "docker-entrypoint.s…" & 1 minute ago & Up 1 minute \\ \bottomrule
 		\end{tabular}
-	\item Kopieren sie die CONTAINER ID von invsystem\_web und führen sie den Befehl ''docker exec -i -t $<$CONTAINER ID$>$ /bin/bash'' aus. Dieser öffnet eine Shell im Container des Servers.
+	\item Kopieren Sie die CONTAINER ID von invsystem\_web und führen Sie den Befehl ''docker exec -i -t $<$CONTAINER ID$>$ /bin/bash'' aus. Dieser öffnet eine Shell im Container des Servers.
 	\item In dieser Shell müssen jetzt die Befehle ''python3 manage.py makemigrations'' und ''python3 manage.py migrate'' ausgeführt werden. Diese initialisieren die Datenbank und erstellen die Tabellen.
-	\item Erstellen sie einen Datenbankbenutzer indem sie den Befehl ''python3 manage.py createsuperuser'' aufrufen und die geforderten Daten eingeben.
-	\item Öffnen sie einen Browser und geben sie ''localhost:8000'' in die Addresszeile ein. Sie können sich jetzt indem sie auf den ''Einloggen'' Button in der oberen rechten Ecke klicken einloggen und den Inventarisierungsserver nutzen.
+	\item Erstellen Sie einen Datenbankbenutzer indem Sie den Befehl ''python3 manage.py createsuperuser'' aufrufen und die geforderten Daten eingeben.
+	\item Öffnen Sie einen Browser und geben Sie ''localhost:8000'' in die Addresszeile ein. Sie können sich jetzt indem Sie auf den ''Einloggen'' Button in der oberen rechten Ecke klicken einloggen und den Inventarisierungsserver nutzen.
 \end{enumerate}
 \section{Erklärung der Benutzeroberfläche}
 \subsection{Das Django Adminpanel}
-Unter ''$<$Serveraddresse$>$/admin'' ist das Adminpanel verfügbar. 
-
-
+Unter ''$<$Serveraddresse$>$/admin'' ist das Adminpanel verfügbar. Dort können Sie manuell Objekte erstellen und die Datenbank verwalten. Diese Funktion sollte allerdings nur genutzt werden um Benutzer mit Administratorrechten auszustatten, da es sonst zu Fehlern kommen kann. Zur Erstellung von Kategorien sollte das Inventarisierungsinterface genutzt werden. 
+\subsection{Das Inventarisierungsinterface}
+Wenn Sie in der Navigationsleiste auf ''Objekt inventarisieren'' klicken öffnet sich das Inventarisierungsinterface. Dort können Sie Objekte inventarisieren oder Kategorien erstellen. Füllen Sie dafür das Formular aus und klicken Sie auf ''inventarisieren''. Das ''Objekt'' Feld ist erforderlich, alle anderen sind optional. \newline
+Um eine Kategorie zu erstellen, klicken Sie auf ''Neue Kategorie hinzufügen'' neben dem ''inventarisieren'' Button. Geben Sie den Namen der Kategorie ein und klicken Sie den Button an.
+\subsection{Inventarübersicht}
+Unter der Eintragung ''Inventar'' in der Navigationsleiste ist die Inventarübersicht verfügbar.
 \end{document}
