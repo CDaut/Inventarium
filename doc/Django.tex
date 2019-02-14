@@ -17,7 +17,7 @@
 \renewcommand{\footrulewidth}{0.4pt}
 \cfoot{Seite \thepage}
 
-\title{Das Django Web-Framework dargestellt anhand des Praktischen Beispieles eines Inventarisierungssystemes}
+\title{Das Django Webframework am Beispieles eines Inventarisierungssystemes}
 \author{Clemens Dautermann}
 \date{2. Januar 2019 bis \today}
 
@@ -208,7 +208,7 @@ class CategoryForm(ModelForm):
 \end{minted}
 Hier werden zwei Formulare definiert. Es wird angegeben mit welchem model das Formular asoziiert werden soll und welche Felder angezeigt werden sollen. Außerdem wird definiert, dass für das name und das title Feld ein ''TextInput()'' Feld genutzt werden soll.
 \subsubsection{models.py}
-In der models.py werden Models definiert, die in Verbindung mit der Datenbank genutzt werden können. Diese werden innerhalb von Django als Objekte repräsentiert, können jedoch trotzdem in einer SQL Datenbank gespeichert werden. Eine mopels.py kann beispielsweise folgendermaßen aussehen:
+In der models.py werden Models definiert, die in Verbindung mit der Datenbank genutzt werden können. Diese werden innerhalb von Django als Objekte repräsentiert, können jedoch trotzdem in einer SQL Datenbank gespeichert werden. Eine models.py kann beispielsweise folgendermaßen aussehen:
 \begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
 from django.db import models
 import uuid
@@ -350,9 +350,13 @@ Aus Sicherheitsgründen ist das gesamte Webinterface des Servers passwortgeschü
 			1289f9bcdd04 & postgres       & "docker-entrypoint.s…" & 1 minute ago & Up 1 minute \\ \bottomrule
 		\end{tabular}
 	\item Kopieren sie die CONTAINER ID von invsystem\_web und führen sie den Befehl ''docker exec -i -t $<$CONTAINER ID$>$ /bin/bash'' aus. Dieser öffnet eine Shell im Container des Servers.
+	\item In dieser Shell müssen jetzt die Befehle ''python3 manage.py makemigrations'' und ''python3 manage.py migrate'' ausgeführt werden. Diese initialisieren die Datenbank und erstellen die Tabellen.
+	\item Erstellen sie einen Datenbankbenutzer indem sie den Befehl ''python3 manage.py createsuperuser'' aufrufen und die geforderten Daten eingeben.
+	\item Öffnen sie einen Browser und geben sie ''localhost:8000'' in die Addresszeile ein. Sie können sich jetzt indem sie auf den ''Einloggen'' Button in der oberen rechten Ecke klicken einloggen und den Inventarisierungsserver nutzen.
 \end{enumerate}
-
 \section{Erklärung der Benutzeroberfläche}
+\subsection{Das Django Adminpanel}
+Unter ''$<$Serveraddresse$>$/admin'' ist das Adminpanel verfügbar. 
 
 
 \end{document}
