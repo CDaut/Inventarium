@@ -33,3 +33,5 @@
 \contentsline {subsection}{\numberline {6.1}Das Django Adminpanel}{15}
 \contentsline {subsection}{\numberline {6.2}Das Inventarisierungsinterface}{15}
 \contentsline {subsection}{\numberline {6.3}Inventar\IeC {\"u}bersicht}{15}
+\contentsline {subsection}{\numberline {6.4}Objekte bearbeiten}{16}
+\contentsline {subsection}{\numberline {6.5}Einstellungen}{16}
