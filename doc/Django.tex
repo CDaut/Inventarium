@@ -10,6 +10,7 @@
 \usepackage[hyphens]{url}
 \usepackage{listings}
 \usepackage{booktabs}
+\usepackage{pdfpages}
 
 \pagestyle{fancy}
 
@@ -17,7 +18,7 @@
 \renewcommand{\footrulewidth}{0.4pt}
 \cfoot{Seite \thepage}
 
-\title{Das Django Webframework am Beispieles eines Inventarisierungssystemes}
+\title{Das Django Webframework am Beispieles eines Inventarisierungssystems}
 \author{Clemens Dautermann}
 \date{2. Januar 2019 bis \today}
 
@@ -40,7 +41,7 @@
 
 \begin{document}
 
-\maketitle
+\includepdf[pages=-]{Deckblatt_Facharbeit.pdf}
 \newpage
 \tableofcontents
 \newpage
