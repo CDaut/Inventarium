@@ -18,7 +18,7 @@
 \renewcommand{\footrulewidth}{0.4pt}
 \cfoot{Seite \thepage}
 
-\title{Das Django Webframework am Beispieles eines Inventarisierungssystems}
+
 \author{Clemens Dautermann}
 \date{2. Januar 2019 bis \today}
 
@@ -50,18 +50,18 @@
 \section{Einleitung}
 Diese Facharbeit soll einen grundlegenden Überblick über die wichtigsten Funktionen des Django Web-Frameworks geben.\newline
 Das Django Web-Framework ist ein größtenteils in Python geschriebenes\footnote{Offizielle Django GitHub Seite https://github.com/django/django} Framework
-zum entwickeln von Webservern. Es ist aufgrund seiner ausgeprägten Modularität und der Existenz einer Vielzahl von Datenbanktreibern besonders gut für
+zum Entwickeln von Webservern. Es ist aufgrund seiner ausgeprägten Modularität und der Existenz einer Vielzahl von Datenbanktreibern besonders gut für
 die Entwicklung von Webservern geeignet, die eine Datenbank erfordern.\newline 
 Django stellt eine grundlegende Struktur für die Entwicklung zur Verfügung. So zum Beispiel:
 \begin{itemize}
-	\item Eine settings.py Die genutzt werden kann um Konfigurationsmöglichkeiten zentral zu bündeln
-	\item Eine library um einfache Zugriffe auf Datenbanken zu tätigen und sogenannte Models um Datenbankobjekte zu verwalten
-	\item Ein Routingsystem um eine einfachere Verwaltung von Urls zu gewährleisten
-	\item Eine Grundstruktur, die Modularität unterstützt und das einfache Installieren oder Entfernen von sogenannten ''Apps'' ermöglicht
+	\item Eine settings.py, die genutzt werden kann um Konfigurationsmöglichkeiten zentral zu bündeln.
+	\item Eine library, um einfache Zugriffe auf Datenbanken zu tätigen, und sogenannte Models, um Datenbankobjekte zu verwalten.
+	\item Ein Routingsystem, um eine einfachere Verwaltung von Urls zu gewährleisten.
+	\item Eine Grundstruktur, die Modularität unterstützt und das einfache Installieren oder Entfernen von sogenannten ''Apps'' ermöglicht.
 \end{itemize}
-Es ist also kaum notwendig, jedoch durchaus möglich, als Entwickler noch SQL zu schreiben wenn man mit dem Django Web-Framework entwickelt.
+Es ist also kaum notwendig, jedoch durchaus möglich, als Entwickler noch SQL zu schreiben, wenn man mit dem Django Web-Framework entwickelt.
 \section{Struktur}
-Ein typischer Django Server ist aus sogenannten ''Apps'' aufgebaut. Diese werden entweder vom Entwickler selber geschrieben oder können via pip (dem Python Paket Manager) installiert werden. Ein standard Verzeichnisaufbau ist in Abbildung 1 dargestellt.
+Ein typischer Django Server ist aus sogenannten ''Apps'' aufgebaut. Diese werden entweder vom Entwickler selber geschrieben oder können via pip (dem Python Paket Manager) installiert werden. Ein Standard-Verzeichnisaufbau ist in Abbildung 1 dargestellt.
 \begin{figure}[H]
 	\dirtree{%
 		.1 server.
@@ -102,21 +102,21 @@ Ein Django Projekt kann mit dem Befehl \$ django-admin startproject server initi
 \caption{Verzeichnisstruktur, die der \$ django-admin startproject server Befehl erzeugt}
 \end{figure}
 \subsection{manage.py}
-Die manage.py wird, wie der Name schon sagt, verwendet um den Server zu verwalten. Mit Hilfe der manage.py können beispielsweise Migrierungen an der Datenbank erstellt werden, Datenbanknutzer erstellt werden oder der Testserver zur Entwicklung kann gestartet werden. Die gleiche Funktionalität stellt auch der django-admin Befehl zur Verfügung\footnote{Django Dokumentation https://docs.djangoproject.com/en/2.1/ref/django-admin/}.
+Die manage.py wird, wie der Name schon sagt, verwendet um den Server zu verwalten. Mit Hilfe der manage.py können beispielsweise Migrierungen an der Datenbank erstellt werden, Datenbankbenutzer erstellt werden, oder der Testserver zur Entwicklung kann gestartet werden. Die gleiche Funktionalität stellt auch der django-admin Befehl zur Verfügung\footnote{Django Dokumentation https://docs.djangoproject.com/en/2.1/ref/django-admin/}.
 
 \subsection{db.sqlite3}
 In dieser Datei wird die SQL Datenbank gespeichert, die der Server nutzt. Sie wird automatisch erstellt. Es können jedoch auch andere Datenbanken, wie zum Beispiel MongoDB oder eine extern gehostete Datenbank, verwendet werden.
 
 \subsection{server/server} 
 \subsubsection{\_\_init\_\_.py}
-Diese Datei befindet sich im Wurzelverzeichnis jeder App. Sie macht für Python erkennbar, dass es sich bei dem Inhalt dieses Ordners um ein Python Modul handelt. Somit kann die App einfach geteilt und von anderen Nutzern verwendet werden.[linenos, frame=lines, framesep=2mm]{Python}
+Diese Datei befindet sich im Wurzelverzeichnis jeder App. Sie macht für Python erkennbar, dass es sich bei dem Inhalt dieses Ordners um ein Python Modul handelt. Somit kann die App einfach geteilt und von anderen Nutzern verwendet werden.
 
 \subsubsection{settings.py}
-In dieser Datei befinden sich die Einstellungen für den Django Server. Mit ihrer Hilfe werden Zeitzone, Sprache, Datenbankkonfiguration und viele andere Konfigurationen verwaltet. Man kann sie auch verwenden um eigene Einstellungsmöglichkeiten anzubieten. Dafür definiert man eine Konstante (in Python typischerweise durch Großbuchstaben ausgedrückt) und einen Wert. Zum Beispiel\newline LOGIN\_REDIRECT\_URL = ''/''. Im Falle dieses Projektes wurde beispielsweise die Konstante LOGFILE = 'serverlog.log' definiert um zentral auf die Logdatei zugreifen zu können. Auf die in der settings.py definierten Werte kann aus jeder App zugegriffen werden, indem unter Benutzung der Anweisung\newline
+In dieser Datei befinden sich die Einstellungen für den Django Server. Mit ihrer Hilfe werden Zeitzone, Sprache, Datenbankkonfiguration und viele andere Konfigurationen verwaltet. Man kann sie auch verwenden um eigene Einstellungsmöglichkeiten anzubieten. Dafür definiert man eine Konstante (in Python typischerweise durch Großbuchstaben ausgedrückt) und einen Wert, zum Beispiel\newline LOGIN\_REDIRECT\_URL = ''/''. Im Falle dieses Projektes wurde beispielsweise die Konstante LOGFILE = 'serverlog.log' definiert um zentral auf die Logdatei zugreifen zu können. Auf die in der settings.py definierten Werte kann aus jeder App zugegriffen werden, indem unter Benutzung der Anweisung\newline
  \mintinline{Python}{from django.conf import settings }  diese importiert wird. Anschließend kann via \mintinline{Python}{file = settings.LOGFILE} beispielsweise auf die Konstante LOGFILE zugegriffen werden.
  
 \subsubsection{urls.py}
-Diese Datei ist der erste und wichtigste Teil des Django Routing Systems. Über sie werden die grundlegenden URL Strukturen des Servers definiert. Sie importiert urls.py Dateien aus anderen Apps und definiert wie auf eine Bestimmte URL reagiert werden soll. Im Falle dieses Projektes sieht sie folgendermaßen aus:
+Diese Datei ist der erste und wichtigste Teil des Django Routing Systems. Über sie werden die grundlegenden URL Strukturen des Servers definiert. Sie importiert urls.py Dateien aus anderen Apps und definiert, wie auf eine Bestimmte URL reagiert werden soll. Im Falle dieses Projektes sieht sie folgendermaßen aus:
 
 \begin{minted}[linenos,numbersep=5pt,frame=none,framesep=2mm]{Python}
 from django.contrib import admin
@@ -131,12 +131,12 @@ path('list/', include('object_lister.urls')),
 path('settings/', include('settings_app.urls')),
 ]
 \end{minted}
-Hier werden zuerst Pakete für das admin-Interface und Pakete für das URL-Routing importiert. Anschließend wird eine Liste urlpatterns definiert. Diese enthält alle URL Pfade. include() Importiert dabei die urls.py Dateien aus den anderen apps.
+Hier werden zuerst Pakete für das admin-Interface und Pakete für das URL-Routing importiert. Anschließend wird eine Liste urlpatterns definiert. Diese enthält alle URL Pfade. ''include()'' importiert dabei die urls.py Dateien aus den anderen apps.
 
 \subsubsection{wsgi.py}
-Diese Datei stellt ein ''application'' genanntes WSGI Objekt zur Verfügung. Es wird zum starten des Testservers genutzt. In Verbindung mit ''mod\_wsgi'' kann auch Apache dieses Objekt nutzen.\footnote{Django Dokumentation https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/}
+Diese Datei stellt ein ''application'' genanntes WSGI Objekt zur Verfügung. Es wird zum Starten des Testservers genutzt. In Verbindung mit ''mod\_wsgi'' kann auch Apache dieses Objekt nutzen.\footnote{Django Dokumentation https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/}
 \subsection{server/app1}
-Dieses Verzeichnis enthält alle Dateien, die eine App ausmachen. In diesem Fall heißt die App beispielhaft ''app1''. Die Dateien, die in Abb 1 erscheinen, jedoch hier nicht erwähnt werden, haben die selbe Funktion wie die gleichnamigen Dateien im ''server/server'' Ordner.
+Dieses Verzeichnis enthält alle Dateien, die eine App ausmachen. In diesem Fall heißt die App beispielhaft ''app1''. Die Dateien, die in Abb. 1 erscheinen, jedoch hier nicht erwähnt werden, haben dieselbe Funktion wie die gleichnamigen Dateien im ''server/server'' Ordner.
 
 \subsubsection{admin.py}
 Die admin.py dient dazu das Django Admin Interface zu konfigurieren. In ihr werden die Models registriert, die auf der admin Seite zu sehen sind, und wie diese dargestellt werden sollen. Sie sieht beispielsweise in der ''object\_adder'' app folgendermaßen aus:
@@ -160,7 +160,7 @@ admin.site.register(Category, CategoryAdmin)
 \end{minted}
 In Zeile 2 werden die in der models.py definierten Models importiert um Zugriff auf diese zu erlangen.
 \newline
-Anschließend wird für jedes Model eine Klasse erstellt. In dieser Klasse wird jeweils eine ''list\_display'' Variable definiert, die ein Tupel enthält, mit dem alle darzustellenden Attribute an die admin library übergeben werden können. Diese Abmin-Klassen müssen jetzt noch zusammen mit dem Model an die admin library übergeben werden. Dies erfolgt duch die Befehle in Zeile 14 und 15. Dieser Code erzeugt demnach folgendes Admin-Interface:
+Anschließend wird für jedes Model eine Klasse erstellt. In dieser Klasse wird jeweils eine ''list\_display'' Variable definiert, die ein Tupel enthält, mit dem alle darzustellenden Attribute an die admin library übergeben werden können. Diese Admin-Klassen müssen jetzt noch zusammen mit dem Model an die admin library übergeben werden. Dies erfolgt duch die Befehle in Zeile 14 und 15. Dieser Code erzeugt demnach folgendes Admin-Interface:
 \newline
 \begin{center}
 \includegraphics[width=\linewidth, height=7.5cm]{django_admin_objects.png}
@@ -169,7 +169,7 @@ Anschließend wird für jedes Model eine Klasse erstellt. In dieser Klasse wird 
 \includegraphics[width=\linewidth]{django_admin_cats.png}
 \end{center}
 
-Ohne die ''list\_display'' Angebe würde nur der primary key des Models angezeigt und das Interface sähe folgendermaßen aus:
+Ohne die ''list\_display'' Angabe würde nur der Primärschlüssel des Models angezeigt und das Interface sähe folgendermaßen aus:
 \newline
 \begin{center}
 	\includegraphics[width=\linewidth]{django_admin_obj_pk.png}
@@ -207,7 +207,7 @@ class CategoryForm(ModelForm):
 			'name': TextInput()
 		}
 \end{minted}
-Hier werden zwei Formulare definiert. Es wird angegeben mit welchem model das Formular asoziiert werden soll und welche Felder angezeigt werden sollen. Außerdem wird definiert, dass für das name und das title Feld ein ''TextInput()'' Feld genutzt werden soll.
+Hier werden zwei Formulare definiert. Es wird angegeben, mit welchem Model das Formular assoziiert werden soll und welche Felder angezeigt werden sollen. Außerdem wird definiert, dass für das ''name'' und das ''title'' Feld ein ''TextInput()'' Feld genutzt werden soll.
 \subsubsection{models.py}
 In der models.py werden Models definiert, die in Verbindung mit der Datenbank genutzt werden können. Diese werden innerhalb von Django als Objekte repräsentiert, können jedoch trotzdem in einer SQL Datenbank gespeichert werden. Eine models.py kann beispielsweise folgendermaßen aussehen:
 \begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
@@ -225,13 +225,13 @@ import uuid
 			return self.name
 	
 \end{minted}
-In dieser Datei wird ein Model definiert. Es heißt ''Category'' und hat zwei Eigenschaften. Eine ID und einen Namen. Es wird dafür erst eine Klasse namens ''Category'' erstellt, die Subklasse der django.db.models.model Klasse ist. In dieser Klasse werden jetzt die Datenfelder des Objektes definiert, diese sind später in der Datenbank die Spalten. den Datenfeldern können sogenannte Felder zugewiesen werden, die angeben welcher Datentyp in dieser Spalte steht\footnote{ Django Model field reference https://docs.djangoproject.com/en/2.1/ref/models/fields/}. Ein UUIDField fasst zum Beispiel eine UUID, ein TextField Text ein DateField ein Datum und so weiter. Der Parameter ''blank'' gibt an ob das Feld bei der Erstellung des Objektes blank gelassen werden darf. ''max\_length'' ist ein für das TextField spezifischer Parameter, die maximale Länge des Strings angibt, der gespeichert werden kann. ''primary\_key'' gibt an ob dieses Feld der primary Key in der Datenbank ist. Dieser Wert kann nur einem Feld zugewiesen werden. Wenn kein Feld als primary Key gesetzt wurde, erstellt Django  automatisch ein ID Feld, das dann primary Key ist. Der ''default'' Wert gibt an, Welcher Standardwert in das Feld eingespeichert werden soll, wenn vom Nutzer kein Wert übergeben wurde. ''editable'' gibt an, ob das Feld manuell bearbeitet werden kann, zum Beispiel im admin Interface.\newline
-der Aufruf ''categories = models.Manager()'' ist notwendig um via ''categories = Category.categories.all()'' alle Kategorien auf einmal als Liste abfragen zu können.\newline
-''def \_\_str\_\_(self):'' ist eine sogenannte ''magic method'' in Python. Sie ermöglicht es anzugeben, wie das Objekt als String repräsentiert werden soll. Wenn also ''print(category)'' aufgerufen wird, wird aufgrund dieser Methode an stelle des primary Keys, der UUID, der Name ausgegeben.
+In dieser Datei wird ein Model definiert. Es heißt ''Category'' und hat zwei Eigenschaften. Eine ID und einen Namen. Es wird dafür erst eine Klasse namens ''Category'' erstellt, die Subklasse der django.db.models.model Klasse ist. In dieser Klasse werden jetzt die Datenfelder des Objektes definiert, diese sind später in der Datenbank die Spalten. Den Datenfeldern können sogenannte Felder zugewiesen werden, die angeben, welcher Datentyp in dieser Spalte steht\footnote{ Django Model field reference https://docs.djangoproject.com/en/2.1/ref/models/fields/}. Ein ''UUIDField'' fasst zum Beispiel eine UUID, ein ''TextField'' Text ein ''DateField'' ein Datum und so weiter. Der Parameter ''blank'' gibt an, ob das Feld bei der Erstellung des Objektes blank gelassen werden darf. ''max\_length'' ist ein für das ''TextField'' spezifischer Parameter, der die maximale Länge des Strings angibt, der gespeichert werden kann. ''primary\_key'' gibt an, ob dieses Feld der Primärschlüssel in der Datenbank ist. Dieser Wert kann nur einem Feld zugewiesen werden. Wenn kein Feld als Primärschlüssel gesetzt wurde, erstellt Django  automatisch ein ID Feld, das dann Primärschlüssel ist. Der ''default'' Wert gibt an, welcher Standardwert in das Feld eingespeichert werden soll, wenn vom Nutzer kein Wert übergeben wurde. ''editable'' gibt an, ob das Feld, zum Beispiel im admin Interface, manuell bearbeitet werden kann.\newline
+Der Aufruf ''categories = models.Manager()'' ist notwendig um via ''categories = Category.categories.all()'' alle Kategorien auf einmal als Liste abfragen zu können.\newline
+''def \_\_str\_\_(self):'' ist eine sogenannte ''magic method'' in Python. Sie ermöglicht es anzugeben, wie das Objekt als String repräsentiert werden soll. Wenn also ''print(category)'' aufgerufen wird, wird aufgrund dieser Methode anstelle des Primärschlüssels, der UUID, der Name ausgegeben.
 \subsubsection{tests.py}
-Django weist ein umfangreiches System zur Unterstützung von testgetriebener Entwicklung auf. Dieses Testsystem basiert auf dem ''unittest'' Pythonmodul. Die tests.py ist die Datei, in der die Tests für diese App geschrieben werden sollen
-\footnote{Writing and running tests Django Dokumentation \newline https://docs.djangoproject.com/en/2.1/topics/testing/overview/}.
-Mit Hilfe der Tests können beispielsweise Methoden von Models getestet werden oder es kann überprüft werden, ob das richtige Template mit dem richtigen Kontext gerendert wird.
+Django weist ein umfangreiches System zur Unterstützung von testgetriebener Entwicklung auf. Dieses Testsystem basiert auf dem ''unittest'' Pythonmodul. Die ''tests.py'' ist die Datei, in der die Tests für diese App geschrieben werden sollen
+\footnote{Writing and running tests Django Dokumentation  https://docs.djangoproject.com/en/2.1/topics/testing/overview/}.
+Mit Hilfe der Tests können beispielsweise Methoden von Models getestet werden, oder es kann überprüft werden, ob das richtige Template mit dem richtigen Kontext gerendert wird.
 \subsubsection{views.py}
 Diese Datei enthält alle ''views''. Ein View ist eine Methode, die auf die Anfrage des Nutzers reagiert, alle nötigen Berechnungen tätigt und letztendlich das gerenderte Template zurück gibt. Ein View muss immer ein Objekt des Typen ''HttpResponse'' oder einer seiner Subklassen zurück geben. Ein einfacher View kann zum Beispiel folgendermaßen aussehen:
 \begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
@@ -241,14 +241,14 @@ def mainview(request):
 	context = {'a': 'b', 'beispiel': True}
     return render(request, 'exampleapp/index.html', context)
 \end{minted} 
-Die ''context'' Varieble, wird von der render() Methode genutzt um Variablen im Template zu rendern. Die Werte im context können beispielsweise aus der Datenbank abgefragt werden.
+Die ''context'' Variable, wird von der ''render()'' Methode genutzt um Variablen im Template zu rendern. Die Werte im context können beispielsweise aus der Datenbank abgefragt werden.
 \subsubsection{migrations}
-Dieser Ordner enthält Dateien, die durch den makemigrations Befehl erstellt wurden. Sie geben an, ob und wie die Models verändert wurden. Man muss diese Dateien in der Regel als Entwickler nicht selber bearbeiten.
+Dieser Ordner enthält Dateien, die durch den ''makemigrations'' Befehl erstellt wurden. Sie geben an, ob und wie die Models verändert wurden. Man muss diese Dateien in der Regel als Entwickler nicht selber bearbeiten.
 
 
 
 \section{Routing in Django}
-Das grundlegende und wichtigste Prinzip in Django ist das sogenannte ''Routing''. Dieses Prinzip beschreibt den Weg, den eine Anfrage zurücklegt um zu einer Antwort zu führen. Routing in Django funktioniert, indem die Url mit Hilfe von Regular Expressions in Teile aufgespalten wird, die dann einzeln bis letztendlich ein HTML Template zurück gegeben wird verfolgt werden.
+Das grundlegende und wichtigste Prinzip in Django ist das sogenannte ''Routing''. Dieses Prinzip beschreibt den Weg, den eine Anfrage zurücklegt um zu einer Antwort zu führen. Routing in Django funktioniert, indem die Url mit Hilfe von Regular Expressions in Teile aufgespalten wird, die dann einzeln verfolgt werden, bis letztendlich ein HTML Template zurück gegeben wird.
 \subsection{Root Url Config}
 Diese Datei ist die grundlegende Url Konfigurationsdatei. In ihr schaut der Server zuerst nach. Sie befindet sich im server/server/urls.py Ordner und gehört zur Hauptapp des Servers. Sie kann beispielsweise folgendermaßen aussehen:
 \begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
@@ -281,7 +281,7 @@ path('list/', include('object_lister.urls')),
 path('settings/', include('settings_app.urls')),
 ]
 \end{minted}
-Die Kommentare werden beim Erstellen des Projektes automatisch generiert. Diese Datei erzeugt also sechs URL Pfade. Alle Pfade bis auf den ''/admin'' Pfad zeigen hier auf die urls.py Datei einer anderen App. Dies wird mit dem ''include()'' Statement erreicht. Die ''/admin'' Url wird mit hilfe des Admin Paketes gehandhabt, dass automatisch ein Admin Interface zur Datenbankverwaltung erzeugt. 
+Die Kommentare werden beim Erstellen des Projektes automatisch generiert. Diese Datei erzeugt also sechs URL Pfade. Alle Pfade bis auf den ''/admin'' Pfad verweisen hier auf die urls.py Datei einer anderen App. Dies wird mit dem ''include()'' Statement erreicht. Die ''/admin'' Url wird mit hilfe des Admin Paketes gehandhabt, das automatisch ein Admin Interface zur Datenbankverwaltung erzeugt. 
 \subsection{Weitere Url Konfigurationsdateien}
 Mithilfe der ''include()'' Statements kann die Anfrage jetzt theoretisch durch eine unbegrenzte Zahl von urls.py Dateien geleitet werden. In diesem Beispiel wird in der settings\_app.urls jedoch direkt der sogenannte ''View'' zurück gegeben.
 
@@ -295,11 +295,11 @@ path('', views.index, name='settings_index'),
 \end{minted}
 Dies liegt daran, dass in der ''path()'' Funktion kein ''include()'' Statement mehr steht sondern ''views.index''. Außerdem wird in der zweiten Zeile die ''views.py'' der App importiert.
 \subsection{View}
-Im sogenannten View wird findet die eigentliche Programmlogik statt. Hier werden Daten an die ''render()'' Funktion übergeben, die das gerenderte HTML Template zurück gibt. Diese Daten können beispielsweise aus einem Formular stammen oder von der Datenbank abgefragt sein. Hier werden auch POST Anfragen bearbeitet.
+Im sogenannten ''View'' findet die eigentliche Programmlogik statt. Hier werden Daten an die ''render()'' Funktion übergeben, die das gerenderte HTML Template zurück gibt. Diese Daten können beispielsweise aus einem Formular stammen oder von der Datenbank abgefragt sein. Hier werden auch POST Anfragen bearbeitet.
 \section{Template rendering}
-Ein weiterer zentraler Aspekt des Django Frameworks ist das sogenannte ''Template rendering''. Es ermöglicht Variabln und dynamische Inhalte in das HTML Dokument einzubinden. 
+Ein weiterer zentraler Aspekt des Django Frameworks ist das sogenannte ''Template rendering''. Es ermöglicht Variabeln und dynamische Inhalte in das HTML Dokument einzubinden. 
 \subsection{Variablen an ein Template übergeben}
-Um Variablen an das Template weiterzugeben wird im entsprechenden view als dritte Variable ein Dictionary übergeben. Auf die Werte in diesem Dictionary cann jetzt innerhalb des Templates beim rendern zugegriffen werden.
+Um Variablen an das Template weiterzugeben wird im entsprechenden View als dritte Variable ein Dictionary übergeben. Auf die Werte in diesem Dictionary kann jetzt innerhalb des Templates beim rendern zugegriffen werden.
 \begin{minted}[linenos, frame=lines, framesep=2mm]{Python}
 from django.shortcuts import render
 
@@ -309,7 +309,7 @@ def mainview(request):
 \end{minted}
 In diesem Beispiel wird context = {'a': 'b', 'beispiel': True, 'liste': range(10)} als Kontextdictionary übergeben. Das heißt innerhalb des HTML Templates kann auf die Variablen ''a'', ''beispiel'' und ''liste'' zugegriffen werden.
 \subsection{''Django template language''}
-In django existiert eine kleine eigene Skriptsprache, die ''django template language''. Mit ihrer Hilfe kann in Templates auf den übergebenen Kontext eingegangen werden. Sie enthält if-Abfragen, for-Schleifen und vieles mehr, kann aber auch einfach Variablen einbinden. ''{{ var }}'' gibt dabei immer eine einzubindende Variable an, ''\{\%\%\}'' zeigt Befehlssequenzen an. 
+In Django existiert eine kleine eigene Skriptsprache, die ''django template language''. Mit ihrer Hilfe kann in Templates auf den übergebenen Kontext eingegangen werden. Sie enthält if-Abfragen, for-Schleifen und vieles mehr, kann aber auch einfach Variablen einbinden. ''\{\{ var \}\}'' gibt dabei immer eine einzubindende Variable an, ''\{\% \%\}'' zeigt Befehlssequenzen an. 
 \subsubsection{Ein Beispiel}
 Im folgenden Beispiel wird eine Liste namens ''Items'' übergeben. Es soll erst überprüft werden ob diese wirklich übergeben worden ist, und dann jedes Element ausgegeben werden. Der $<$head$>$ tag wurde im Beispiel weggelassen, da er für diese Demonstration irrelevant ist.
 \begin{lstlisting}[language=html]
@@ -331,19 +331,19 @@ Im folgenden Beispiel wird eine Liste namens ''Items'' übergeben. Es soll erst 
 Das ''rendering'' findet in dem Moment statt, wo in dem View die ''render()'' Methode aufgerufen wird. Diese erstellt aus dem Kontext und dem Template eine fertige HTML Datei, die dem Benutzer angezeigt wird. Sie beachtet dazu die Kontrollsequenzen im Template und setzt die entsprechenden Variablen aus dem Kontext ein.
 
 \section{Den Inventarisierungsserver einrichten}
-Der Inventarisierungsserver basiert auf einem Virutualisierungssystem namens Docker. Um den Server einzurichten wird daher Docker sowie das zugehörige Programm Docker compose benötigt.
+Der Inventarisierungsserver basiert auf einem Virtualisierungssystem namens Docker. Um den Server einzurichten wird daher Docker sowie das zugehörige Programm Docker compose benötigt.
 \subsection{Installation}
 \begin{enumerate}
 	\item Installieren Sie Docker und Docker compose. Sie sind auf\newline \url{https://www.docker.com/get-started} und\newline \url{https://docs.docker.com/compose/install/}\newline verfügbar. Dort ist auch der Installationsvorgang genauer beschrieben. 
 	\item Clonen Sie das GitHub Repository von\newline \url{git@github.com:Clemens-Dautermann/Inventarium.git}
 	\item Entpacken Sie das Repository und öffnen Sie ein Terminal im entpackten Ordner, wo sich die Datei ''docker-compose.yml'' befindet.
-	\item Führen Sie den Befehl ''docker-compose up'' aus. Dieser wird automatisch Container für eine PostgresSQL Datenbank und den Inventarisierungsserver herunterladen und konfigurieren. Die Ausführung dieses Befehls kann einige Zeit dauern und benötigt eine aktive Internetverbindung sowie einiges an Festplattenspeicherplatz
-	\item Sie müssen jetzt einen Datenbankbenutzer erstellen
+	\item Führen Sie den Befehl ''docker-compose up'' aus. Dieser wird automatisch Container für eine PostgresSQL Datenbank und den Inventarisierungsserver herunterladen und konfigurieren. Die Ausführung dieses Befehls kann einige Zeit dauern und benötigt eine aktive Internetverbindung sowie einiges an Festplattenspeicherplatz.
+	\item Sie müssen jetzt einen Datenbankbenutzer erstellen.
 \end{enumerate}
 \subsection{Einen Datenbankbenutzer erstellen}
 Aus Sicherheitsgründen ist das gesamte Webinterface des Servers passwortgeschützt. Das heißt, es wird ein Nutzerkonto benötigt um auf dieses zugreifen zu können. Da aber noch kein Benutzer existiert um überhaupt auf die Datenbank zuzugreifen und weitere Nutzer zu erstellen, muss direkt an der Datenbank ein Nutzer erstellt werden. Dies tun Sie folgendermaßen:
 \begin{enumerate}
-	\item Führen Sie den Befehl ''docker ps'' aus während der Server läuft. Die Ausgabe sollte etwa folgendermaßen aussehen:\newline
+	\item Führen Sie den Befehl ''docker ps'' aus, während der Server läuft. Die Ausgabe sollte etwa folgendermaßen aussehen:\newline
 		\begin{tabular}{@{}lllll@{}}
 			\toprule
 			CONTAINER ID & IMAGE          & COMMAND                & CREATED      & STATUS      \\ \midrule
@@ -352,23 +352,23 @@ Aus Sicherheitsgründen ist das gesamte Webinterface des Servers passwortgeschü
 		\end{tabular}
 	\item Kopieren Sie die CONTAINER ID von invsystem\_web und führen Sie den Befehl ''docker exec -i -t $<$CONTAINER ID$>$ /bin/bash'' aus. Dieser öffnet eine Shell im Container des Servers.
 	\item In dieser Shell müssen jetzt die Befehle ''python3 manage.py makemigrations'' und ''python3 manage.py migrate'' ausgeführt werden. Diese initialisieren die Datenbank und erstellen die Tabellen.
-	\item Erstellen Sie einen Datenbankbenutzer indem Sie den Befehl ''python3 manage.py createsuperuser'' aufrufen und die geforderten Daten eingeben.
-	\item Öffnen Sie einen Browser und geben Sie ''localhost:8000'' in die Addresszeile ein. Sie können sich jetzt indem Sie auf den ''Einloggen'' Button in der oberen rechten Ecke klicken einloggen und den Inventarisierungsserver nutzen.
+	\item Erstellen Sie einen Datenbankbenutzer, indem Sie den Befehl ''python3 manage.py createsuperuser'' aufrufen und die geforderten Daten eingeben.
+	\item Öffnen Sie einen Browser und geben Sie ''localhost:8000'' in die Addresszeile ein. Sie können sich jetzt einloggen und den Inventarisierungsserver nutzen, indem Sie auf den ''Einloggen'' Button in der oberen rechten Ecke klicken.
 \end{enumerate}
 \section{Erklärung der Benutzeroberfläche}
 \subsection{Das Django Adminpanel}
 Unter ''$<$Serveraddresse$>$/admin'' ist das Adminpanel verfügbar. Dort können Sie manuell Objekte erstellen und die Datenbank verwalten. Diese Funktion sollte allerdings nur genutzt werden um Benutzer mit Administratorrechten auszustatten, da es sonst zu Fehlern kommen kann. Zur Erstellung von Kategorien sollte das Inventarisierungsinterface genutzt werden. 
 \subsection{Das Inventarisierungsinterface}
-Wenn Sie in der Navigationsleiste auf ''Objekt inventarisieren'' klicken öffnet sich das Inventarisierungsinterface. Dort können Sie Objekte inventarisieren oder Kategorien erstellen. Füllen Sie dafür das Formular aus und klicken Sie auf ''inventarisieren''. Das ''Objekt'' Feld ist erforderlich, alle anderen sind optional. \newline
+Wenn Sie in der Navigationsleiste auf ''Objekt inventarisieren'' klicken, öffnet sich das Inventarisierungsinterface. Dort können Sie Objekte inventarisieren oder Kategorien erstellen. Füllen Sie dafür das Formular aus und klicken Sie auf ''inventarisieren''. Das ''Objekt'' Feld ist erforderlich, alle anderen sind optional. \newline
 Um eine Kategorie zu erstellen, klicken Sie auf ''Neue Kategorie hinzufügen'' neben dem ''inventarisieren'' Button. Geben Sie den Namen der Kategorie ein und klicken Sie den Button an.
 \subsection{Inventarübersicht}
-Unter der Eintragung ''Inventar'' in der Navigationsleiste ist die Inventarübersicht verfügbar. Dort werden drei Tabellen angezeigt. Die oberste enthält alle inventarisierten Objekte, die mittlere enthält alle Kategorien und die unterste alle gelöschten Objekte. Mit einem klick auf den Spaltennamen lässt sich die Tabelle nach dieser Spalte sortieren. Mit einem Klick auf das Objekt selbst lässt es sich bearbeiten. Kategorien können mit dem roten ''löschen'' Knopf in der mittleren Tabelle gelöscht werden.
+Unter der Eintragung ''Inventar'' in der Navigationsleiste ist die Inventarübersicht verfügbar. Dort werden drei Tabellen angezeigt. Die oberste enthält alle inventarisierten Objekte, die mittlere enthält alle Kategorien und die unterste alle gelöschten Objekte. Mit einem Klick auf den Spaltennamen lässt sich die Tabelle nach dieser Spalte sortieren. Mit einem Klick auf das Objekt selbst lässt es sich bearbeiten. Kategorien können mit dem roten ''löschen'' Knopf in der mittleren Tabelle gelöscht werden.
 \subsection{Objekte bearbeiten}
 Um ein Objekt zu bearbeiten, wechseln Sie in die Inventarübersicht und klicken Sie das zu bearbeitende Objekt an. Geben Sie in das jetzt angezeigte Formular die Daten ein. Um die Änderungen zu speichern, klicken Sie den ''speichern'' Button unten an. Falls Sie das Objekt löschen möchten, klicken sie den ''löschen'' Button an.
 \begin{center}
 	\includegraphics[width=\linewidth]{edit_Obj.png}
-So sieht das Fenster zum bearbeiten von Objekten aus.
+So sieht das Fenster zum Bearbeiten von Objekten aus.
 \end{center}
 \subsection{Einstellungen}
-Wenn sie in der Navigationsleiste auf den ''Einstellungen'' Button klicken, wird eine Übersicht zum bearbeiten der Nutzereinstellungen angezeigt. Dort können sie ihren Nutzernamen, ihre Emailaddresse und oder ihr Passwort ändern.
+Wenn Sie in der Navigationsleiste auf den ''Einstellungen'' Button klicken, wird eine Übersicht zum Bearbeiten der Nutzereinstellungen angezeigt. Dort können Sie Ihren Nutzernamen, Ihre Emailaddresse und oder Ihr Passwort ändern.
 \end{document}
